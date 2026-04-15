@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kontak — SpeakUp English</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --navy:#0a1628;--navy2:#112240;--teal:#00b4d8;--teal-light:#90e0ef;--gold:#f4a261;--white:#ffffff;--gray:#8892a4;--card-bg:#142338; }
+    * { margin:0;padding:0;box-sizing:border-box; }
+    body { font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--white);overflow-x:hidden; }
+
+    nav { position:sticky;top:0;z-index:999;background:rgba(10,22,40,0.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(0,180,216,0.15);padding:0 6%;display:flex;align-items:center;justify-content:space-between;height:68px; }
+    .logo { font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:var(--white);text-decoration:none; }
+    .logo span { color:var(--teal); }
+    .nav-links { display:flex;gap:2rem;list-style:none; }
+    .nav-links a { color:var(--gray);text-decoration:none;font-size:0.92rem;font-weight:500;transition:color 0.2s;position:relative; }
+    .nav-links a::after { content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--teal);transition:width 0.3s; }
+    .nav-links a:hover { color:var(--teal); }
+    .nav-links a:hover::after { width:100%; }
+    .nav-links a.active { color:var(--teal); }
+    .nav-links a.active::after { width:100%; }
+    .nav-cta { background:var(--teal);color:var(--navy) !important;padding:8px 20px;border-radius:50px;font-weight:600 !important; }
+    .nav-cta::after { display:none !important; }
+    .hamburger { display:none;flex-direction:column;gap:5px;cursor:pointer; }
+    .hamburger span { width:24px;height:2px;background:var(--white);border-radius:2px;display:block; }
+
+    .page-header { padding:80px 6% 60px;background:linear-gradient(180deg,var(--navy2) 0%,var(--navy) 100%);border-bottom:1px solid rgba(255,255,255,0.06); }
+    .breadcrumb { font-size:0.78rem;color:var(--gray);margin-bottom:16px; }
+    .breadcrumb a { color:var(--teal);text-decoration:none; }
+    .section-label { font-size:0.75rem;letter-spacing:2px;color:var(--teal);text-transform:uppercase;font-weight:600;margin-bottom:12px; }
+    .page-header h1 { font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:900;margin-bottom:16px; }
+    .page-header p { color:var(--gray);font-size:1rem;line-height:1.7;max-width:560px; }
+
+    .contact-section { padding:70px 6%; }
+    .contact-wrapper { display:flex;gap:50px;flex-wrap:wrap; }
+
+    /* INFO */
+    .contact-info { flex:1 1 280px; }
+    .contact-info h2 { font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;margin-bottom:16px; }
+    .contact-info p { color:var(--gray);font-size:0.92rem;line-height:1.7;margin-bottom:36px; }
+
+    .info-item { display:flex;align-items:flex-start;gap:16px;margin-bottom:28px; }
+    .info-icon { width:44px;height:44px;background:rgba(0,180,216,0.1);border:1px solid rgba(0,180,216,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0; }
+    .info-content h4 { font-size:0.85rem;font-weight:600;margin-bottom:4px; }
+    .info-content p { font-size:0.84rem;color:var(--gray);margin:0;line-height:1.5; }
+
+    .social-links { display:flex;gap:12px;margin-top:36px; }
+    .social-btn { width:42px;height:42px;background:var(--card-bg);border:1px solid rgba(255,255,255,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;text-decoration:none;transition:all 0.2s;color:var(--white); }
+    .social-btn:hover { border-color:var(--teal);background:rgba(0,180,216,0.1); }
+
+    /* FORM */
+    .contact-form { flex:2 1 360px;background:var(--card-bg);border:1px solid rgba(255,255,255,0.06);border-radius:24px;padding:40px; }
+    .contact-form h3 { font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:8px; }
+    .contact-form .subtitle { font-size:0.85rem;color:var(--gray);margin-bottom:30px; }
+
+    .form-row { display:flex;gap:16px;flex-wrap:wrap; }
+    .form-group { margin-bottom:20px;flex:1 1 200px; }
+    .form-group.full { flex:1 1 100%; }
+    .form-group label { display:block;font-size:0.82rem;font-weight:500;color:#c8d6e8;margin-bottom:8px; }
+    .form-group input, .form-group select, .form-group textarea {
+      width:100%;
+      background:rgba(255,255,255,0.05);
+      border:1.5px solid rgba(255,255,255,0.1);
+      border-radius:10px;
+      padding:12px 16px;
+      font-family:'DM Sans',sans-serif;
+      font-size:0.9rem;
+      color:var(--white);
+      outline:none;
+      transition:border-color 0.2s;
+    }
+    .form-group input::placeholder, .form-group textarea::placeholder { color:var(--gray); }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color:var(--teal); }
+    .form-group select option { background:var(--navy2);color:var(--white); }
+    .form-group textarea { resize:vertical;min-height:120px; }
+
+    .btn-submit { background:var(--teal);color:var(--navy);padding:14px 36px;border-radius:50px;font-weight:700;font-size:0.95rem;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s;width:100%;margin-top:8px; }
+    .btn-submit:hover { background:var(--teal-light);transform:translateY(-1px); }
+
+    /* MAP PLACEHOLDER */
+    .map-section { padding:0 6% 70px; }
+    .map-box { background:var(--card-bg);border:1px solid rgba(255,255,255,0.06);border-radius:20px;height:280px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:var(--gray); }
+    .map-box .map-icon { font-size:3rem; }
+    .map-box p { font-size:0.88rem; }
+    .map-box strong { color:var(--white);font-size:1rem; }
+
+    /* SUCCESS */
+    .success-msg { display:none;background:rgba(0,180,216,0.1);border:1px solid rgba(0,180,216,0.3);border-radius:10px;padding:16px;margin-top:16px;font-size:0.88rem;color:var(--teal);text-align:center; }
+
+    footer { background:#060f1c;border-top:1px solid rgba(255,255,255,0.06);padding:50px 6% 30px; }
+    .footer-grid { display:flex;flex-wrap:wrap;gap:40px;margin-bottom:40px; }
+    .footer-brand { flex:2 1 200px; }
+    .footer-brand .logo { display:block;margin-bottom:12px; }
+    .footer-brand p { font-size:0.85rem;color:var(--gray);line-height:1.7;max-width:260px; }
+    .footer-col { flex:1 1 150px; }
+    .footer-col h4 { font-size:0.82rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--gray);margin-bottom:16px; }
+    .footer-col ul { list-style:none; }
+    .footer-col ul li { margin-bottom:10px; }
+    .footer-col ul li a { color:#8892a4;font-size:0.86rem;text-decoration:none;transition:color 0.2s; }
+    .footer-col ul li a:hover { color:var(--teal); }
+    .footer-bottom { border-top:1px solid rgba(255,255,255,0.06);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:0.8rem;color:var(--gray); }
+
+    @media(max-width:700px) {
+      .nav-links { display:none;position:absolute;top:68px;left:0;right:0;background:rgba(10,22,40,0.98);flex-direction:column;padding:20px 6% 24px;gap:0;border-bottom:1px solid rgba(0,180,216,0.15); }
+      .nav-links.open { display:flex; }
+      .nav-links li a { display:block;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.05); }
+      .hamburger { display:flex; }
+      .contact-form { padding:28px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="menu.html" class="logo">Speak<span>Up</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="menu.html">Beranda</a></li>
+      <li><a href="kursus.html">Kursus</a></li>
+      <li><a href="tentang.html">Tentang Kami</a></li>
+      <li><a href="kontak.html" class="active">Kontak</a></li>
+      <li><a href="daftar.html" class="nav-cta">Daftar Sekarang</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+  </nav>
+
+  <div class="page-header">
+    <div class="breadcrumb"><a href="menu.html">Beranda</a> / Kontak</div>
+    <div class="section-label">Hubungi Kami</div>
+    <h1>Ada Pertanyaan?</h1>
+    <p>Tim kami siap membantu kamu memilih program yang tepat dan menjawab semua pertanyaanmu.</p>
+  </div>
+
+  <section class="contact-section">
+    <div class="contact-wrapper">
+      <!-- INFO -->
+      <div class="contact-info">
+        <h2>Kami Senang Mendengar dari Kamu</h2>
+        <p>Jangan ragu untuk menghubungi kami melalui form, WhatsApp, email, atau langsung kunjungi kantor kami di Samarinda.</p>
+
+        <div class="info-item">
+          <div class="info-icon">📍</div>
+          <div class="info-content">
+            <h4>Alamat Kantor</h4>
+            <p>Jl. Pahlawan No. 45, Samarinda<br>Kalimantan Timur, 75117</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">📞</div>
+          <div class="info-content">
+            <h4>Telepon / WhatsApp</h4>
+            <p>+62 812-3456-7890<br>Senin – Jumat, 08.00 – 17.00 WITA</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">✉️</div>
+          <div class="info-content">
+            <h4>Email</h4>
+            <p>info@speakupenglish.id<br>support@speakupenglish.id</p>
+          </div>
+        </div>
+
+        <div class="social-links">
+          <a href="#" class="social-btn" title="Instagram">📷</a>
+          <a href="#" class="social-btn" title="TikTok">🎵</a>
+          <a href="#" class="social-btn" title="YouTube">▶️</a>
+          <a href="#" class="social-btn" title="WhatsApp">💬</a>
+        </div>
+      </div>
+
+      <!-- FORM -->
+      <div class="contact-form">
+        <h3>Kirim Pesan</h3>
+        <p class="subtitle">Isi formulir di bawah dan tim kami akan segera merespons.</p>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nama Lengkap *</label>
+            <input type="text" placeholder="Masukkan nama lengkap"/>
+          </div>
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" placeholder="nama@email.com"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Nomor WhatsApp</label>
+          <input type="tel" placeholder="+62 812-xxxx-xxxx"/>
+        </div>
+        <div class="form-group">
+          <label>Topik</label>
+          <select>
+            <option value="">— Pilih Topik —</option>
+            <option>Informasi Kursus</option>
+            <option>Pendaftaran</option>
+            <option>Pembayaran</option>
+            <option>Teknis / Akses Platform</option>
+            <option>Lainnya</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label>Pesan *</label>
+          <textarea placeholder="Tuliskan pertanyaan atau pesan kamu di sini..."></textarea>
+        </div>
+        <button class="btn-submit" onclick="handleSubmit()">Kirim Pesan →</button>
+        <div class="success-msg" id="successMsg">✅ Pesan berhasil dikirim! Tim kami akan menghubungi kamu segera.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAP -->
+  <div class="map-section">
+    <div class="map-box">
+      <div class="map-icon">🗺️</div>
+      <strong>SpeakUp English — Samarinda</strong>
+      <p>Jl. Pahlawan No. 45, Samarinda, Kalimantan Timur</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="menu.html" class="logo">Speak<span style="color:var(--teal)">Up</span></a>
+        <p>Platform kursus bahasa Inggris online yang membantu Anda mencapai potensi terbaik dalam berkomunikasi secara global.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigasi</h4>
+        <ul>
+          <li><a href="menu.html">Beranda</a></li>
+          <li><a href="kursus.html">Kursus</a></li>
+          <li><a href="tentang.html">Tentang Kami</a></li>
+          <li><a href="kontak.html">Kontak</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Program</h4>
+        <ul>
+          <li><a href="kursus.html">English for Beginners</a></li>
+          <li><a href="kursus.html">Conversational English</a></li>
+          <li><a href="kursus.html">Business English</a></li>
+          <li><a href="kursus.html">IELTS Preparation</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 SpeakUp English. Dibuat dengan ❤ untuk pelajar Indonesia.</span>
+      <span>Samarinda, Kalimantan Timur</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleNav() { document.getElementById('navLinks').classList.toggle('open'); }
+    function handleSubmit() {
+      const msg = document.getElementById('successMsg');
+      msg.style.display = 'block';
+      setTimeout(() => msg.style.display = 'none', 4000);
+    }
+  </script>
+</body>
+</html>

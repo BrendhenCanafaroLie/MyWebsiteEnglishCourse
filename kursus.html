@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kursus — SpeakUp English</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0a1628;
+      --navy2: #112240;
+      --teal: #00b4d8;
+      --teal-light: #90e0ef;
+      --gold: #f4a261;
+      --cream: #fdf8f0;
+      --white: #ffffff;
+      --gray: #8892a4;
+      --card-bg: #142338;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--navy); color: var(--white); overflow-x: hidden; }
+
+    /* NAVBAR */
+    nav {
+      position: sticky; top: 0; z-index: 999;
+      background: rgba(10,22,40,0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(0,180,216,0.15);
+      padding: 0 6%;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px;
+    }
+
+    .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 900; color: var(--white); text-decoration: none; }
+    .logo span { color: var(--teal); }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--gray); text-decoration: none; font-size: 0.92rem; font-weight: 500; transition: color 0.2s; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--teal); transition: width 0.3s; }
+    .nav-links a:hover { color: var(--teal); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: var(--teal); }
+    .nav-links a.active::after { width: 100%; }
+    .nav-cta { background: var(--teal); color: var(--navy) !important; padding: 8px 20px; border-radius: 50px; font-weight: 600 !important; transition: background 0.2s !important; }
+    .nav-cta:hover { background: var(--teal-light) !important; }
+    .nav-cta::after { display: none !important; }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; display: block; }
+
+    /* PAGE HEADER */
+    .page-header {
+      padding: 80px 6% 60px;
+      background: linear-gradient(180deg, var(--navy2) 0%, var(--navy) 100%);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .breadcrumb { font-size: 0.78rem; color: var(--gray); margin-bottom: 16px; }
+    .breadcrumb a { color: var(--teal); text-decoration: none; }
+
+    .section-label { font-size: 0.75rem; letter-spacing: 2px; color: var(--teal); text-transform: uppercase; font-weight: 600; margin-bottom: 12px; }
+
+    .page-header h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; margin-bottom: 16px; }
+    .page-header p { color: var(--gray); font-size: 1rem; line-height: 1.7; max-width: 560px; }
+
+    /* FILTER */
+    .filter-bar {
+      padding: 28px 6%;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: var(--navy2);
+    }
+
+    .filter-btn {
+      padding: 8px 20px;
+      border-radius: 50px;
+      border: 1.5px solid rgba(255,255,255,0.12);
+      background: transparent;
+      color: var(--gray);
+      font-size: 0.84rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      border-color: var(--teal);
+      color: var(--teal);
+      background: rgba(0,180,216,0.08);
+    }
+
+    /* COURSES */
+    .courses-section { padding: 60px 6%; }
+
+    .courses-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .course-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      overflow: hidden;
+      flex: 1 1 calc(33.333% - 24px);
+      min-width: 260px;
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    }
+
+    .course-card:hover {
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: 0 24px 50px rgba(0,0,0,0.4);
+      border-color: rgba(0,180,216,0.35);
+    }
+
+    .course-thumb {
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+    }
+
+    .course-thumb.c1 { background: linear-gradient(135deg, #1a3a5c, #0d2137); }
+    .course-thumb.c2 { background: linear-gradient(135deg, #1a2d4a, #0f1f35); }
+    .course-thumb.c3 { background: linear-gradient(135deg, #1f2b44, #0a1628); }
+    .course-thumb.c4 { background: linear-gradient(135deg, #162940, #091826); }
+    .course-thumb.c5 { background: linear-gradient(135deg, #192e47, #0c1f32); }
+    .course-thumb.c6 { background: linear-gradient(135deg, #1c3248, #0e2034); }
+
+    .course-body { padding: 22px 22px 26px; }
+
+    .course-level {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 50px; margin-bottom: 12px; display: inline-block;
+    }
+
+    .level-beginner { background: rgba(0,180,216,0.15); color: var(--teal); }
+    .level-intermediate { background: rgba(244,162,97,0.15); color: var(--gold); }
+    .level-advanced { background: rgba(255,100,100,0.12); color: #ff8080; }
+
+    .course-body h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 8px; }
+    .course-body p { font-size: 0.84rem; color: var(--gray); line-height: 1.6; margin-bottom: 16px; }
+
+    .course-meta { display: flex; gap: 14px; font-size: 0.78rem; color: var(--gray); padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.06); flex-wrap: wrap; }
+    .course-meta span { display: flex; align-items: center; gap: 5px; }
+
+    .course-price { margin-top: 16px; display: flex; align-items: center; justify-content: space-between; }
+    .price { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--white); }
+    .price-badge { font-size: 0.75rem; color: var(--gray); margin-left: 6px; font-family: 'DM Sans', sans-serif; font-weight: 400; }
+    .btn-enroll { background: rgba(0,180,216,0.15); color: var(--teal); border: 1px solid rgba(0,180,216,0.3); padding: 8px 18px; border-radius: 50px; font-size: 0.82rem; font-weight: 600; text-decoration: none; transition: all 0.2s; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+    .btn-enroll:hover { background: var(--teal); color: var(--navy); }
+
+    /* PROMO BANNER */
+    .promo-banner {
+      background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
+      border-radius: 16px;
+      padding: 28px 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 50px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .promo-text h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--navy); margin-bottom: 6px; }
+    .promo-text p { font-size: 0.88rem; color: rgba(10,22,40,0.75); }
+
+    .btn-promo { background: var(--navy); color: var(--white); padding: 12px 28px; border-radius: 50px; font-weight: 600; font-size: 0.9rem; text-decoration: none; white-space: nowrap; transition: opacity 0.2s; }
+    .btn-promo:hover { opacity: 0.85; }
+
+    /* FOOTER */
+    footer { background: #060f1c; border-top: 1px solid rgba(255,255,255,0.06); padding: 50px 6% 30px; }
+    .footer-grid { display: flex; flex-wrap: wrap; gap: 40px; margin-bottom: 40px; }
+    .footer-brand { flex: 2 1 200px; }
+    .footer-brand .logo { display: block; margin-bottom: 12px; }
+    .footer-brand p { font-size: 0.85rem; color: var(--gray); line-height: 1.7; max-width: 260px; }
+    .footer-col { flex: 1 1 150px; }
+    .footer-col h4 { font-size: 0.82rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--gray); margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a { color: #8892a4; font-size: 0.86rem; text-decoration: none; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--teal); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 0.8rem; color: var(--gray); }
+
+    @media (max-width: 700px) {
+      .nav-links { display: none; position: absolute; top: 68px; left: 0; right: 0; background: rgba(10,22,40,0.98); flex-direction: column; padding: 20px 6% 24px; gap: 0; border-bottom: 1px solid rgba(0,180,216,0.15); }
+      .nav-links.open { display: flex; }
+      .nav-links li a { display: block; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+      .hamburger { display: flex; }
+      .course-card { flex: 1 1 90%; }
+      .promo-banner { flex-direction: column; text-align: center; }
+    }
+
+    @media (min-width: 701px) { .course-card { flex: 1 1 calc(50% - 24px); } }
+    @media (min-width: 1024px) { .course-card { flex: 1 1 calc(33.333% - 24px); } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="menu.html" class="logo">Speak<span>Up</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="menu.html">Beranda</a></li>
+      <li><a href="kursus.html" class="active">Kursus</a></li>
+      <li><a href="tentang.html">Tentang Kami</a></li>
+      <li><a href="kontak.html">Kontak</a></li>
+      <li><a href="daftar.html" class="nav-cta">Daftar Sekarang</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="breadcrumb"><a href="menu.html">Beranda</a> / Kursus</div>
+    <div class="section-label">Program Belajar</div>
+    <h1>Semua Program Kursus</h1>
+    <p>Temukan program kursus yang sesuai dengan level dan tujuanmu. Dari pemula hingga persiapan ujian internasional.</p>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active">Semua</button>
+    <button class="filter-btn">Pemula</button>
+    <button class="filter-btn">Menengah</button>
+    <button class="filter-btn">Lanjutan</button>
+    <button class="filter-btn">Sertifikasi</button>
+  </div>
+
+  <section class="courses-section">
+
+    <div class="promo-banner">
+      <div class="promo-text">
+        <h3>🎉 Promo Pendaftaran Baru — Diskon 30%!</h3>
+        <p>Berlaku hingga 31 Mei 2025. Daftar sekarang dan mulai belajar hari ini.</p>
+      </div>
+      <a href="daftar.html" class="btn-promo">Klaim Diskon</a>
+    </div>
+
+    <div class="courses-grid">
+
+      <div class="course-card">
+        <div class="course-thumb c1">🔤</div>
+        <div class="course-body">
+          <span class="course-level level-beginner">Pemula</span>
+          <h3>English for Beginners</h3>
+          <p>Pelajaran dasar bahasa Inggris mulai dari alfabet, kosakata, hingga kalimat sederhana untuk kehidupan sehari-hari.</p>
+          <div class="course-meta">
+            <span>⏱ 8 Minggu</span>
+            <span>📖 24 Materi</span>
+            <span>⭐ 4.9</span>
+            <span>👥 452 Siswa</span>
+          </div>
+          <div class="course-price">
+            <div><span class="price">Rp 299.000</span><span class="price-badge">/ kursus</span></div>
+            <a href="daftar.html" class="btn-enroll">Daftar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-thumb c2">💬</div>
+        <div class="course-body">
+          <span class="course-level level-intermediate">Menengah</span>
+          <h3>Conversational English</h3>
+          <p>Latih kemampuan berbicara dengan simulasi percakapan nyata, role play, dan diskusi topik aktual.</p>
+          <div class="course-meta">
+            <span>⏱ 10 Minggu</span>
+            <span>📖 30 Materi</span>
+            <span>⭐ 4.8</span>
+            <span>👥 387 Siswa</span>
+          </div>
+          <div class="course-price">
+            <div><span class="price">Rp 399.000</span><span class="price-badge">/ kursus</span></div>
+            <a href="daftar.html" class="btn-enroll">Daftar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-thumb c3">📝</div>
+        <div class="course-body">
+          <span class="course-level level-advanced">Lanjutan</span>
+          <h3>Business English</h3>
+          <p>Kuasai bahasa Inggris profesional: email bisnis, presentasi, negosiasi, dan rapat formal.</p>
+          <div class="course-meta">
+            <span>⏱ 12 Minggu</span>
+            <span>📖 36 Materi</span>
+            <span>⭐ 4.9</span>
+            <span>👥 291 Siswa</span>
+          </div>
+          <div class="course-price">
+            <div><span class="price">Rp 499.000</span><span class="price-badge">/ kursus</span></div>
+            <a href="daftar.html" class="btn-enroll">Daftar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-thumb c4">🎓</div>
+        <div class="course-body">
+          <span class="course-level level-advanced">Sertifikasi</span>
+          <h3>IELTS Preparation</h3>
+          <p>Program intensif persiapan IELTS dengan latihan soal, simulasi ujian, dan strategi menjawab soal.</p>
+          <div class="course-meta">
+            <span>⏱ 16 Minggu</span>
+            <span>📖 48 Materi</span>
+            <span>⭐ 4.9</span>
+            <span>👥 213 Siswa</span>
+          </div>
+          <div class="course-price">
+            <div><span class="price">Rp 699.000</span><span class="price-badge">/ kursus</span></div>
+            <a href="daftar.html" class="btn-enroll">Daftar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-thumb c5">✍️</div>
+        <div class="course-body">
+          <span class="course-level level-intermediate">Menengah</span>
+          <h3>English Writing Skills</h3>
+          <p>Pelajari cara menulis esai, laporan, dan artikel dalam bahasa Inggris yang baik dan benar.</p>
+          <div class="course-meta">
+            <span>⏱ 10 Minggu</span>
+            <span>📖 28 Materi</span>
+            <span>⭐ 4.7</span>
+            <span>👥 178 Siswa</span>
+          </div>
+          <div class="course-price">
+            <div><span class="price">Rp 349.000</span><span class="price-badge">/ kursus</span></div>
+            <a href="daftar.html" class="btn-enroll">Daftar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-thumb c6">🎤</div>
+        <div class="course-body">
+          <span class="course-level level-advanced">Lanjutan</span>
+          <h3>Public Speaking in English</h3>
+          <p>Tingkatkan kepercayaan diri berbicara di depan umum dalam bahasa Inggris. Cocok untuk mahasiswa dan profesional.</p>
+          <div class="course-meta">
+            <span>⏱ 8 Minggu</span>
+            <span>📖 20 Materi</span>
+            <span>⭐ 4.8</span>
+            <span>👥 156 Siswa</span>
+          </div>
+          <div class="course-price">
+            <div><span class="price">Rp 449.000</span><span class="price-badge">/ kursus</span></div>
+            <a href="daftar.html" class="btn-enroll">Daftar</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="menu.html" class="logo">Speak<span style="color:var(--teal)">Up</span></a>
+        <p>Platform kursus bahasa Inggris online yang membantu Anda mencapai potensi terbaik dalam berkomunikasi secara global.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigasi</h4>
+        <ul>
+          <li><a href="menu.html">Beranda</a></li>
+          <li><a href="kursus.html">Kursus</a></li>
+          <li><a href="tentang.html">Tentang Kami</a></li>
+          <li><a href="kontak.html">Kontak</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Program</h4>
+        <ul>
+          <li><a href="kursus.html">English for Beginners</a></li>
+          <li><a href="kursus.html">Conversational English</a></li>
+          <li><a href="kursus.html">Business English</a></li>
+          <li><a href="kursus.html">IELTS Preparation</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 SpeakUp English. Dibuat dengan ❤ untuk pelajar Indonesia.</span>
+      <span>Samarinda, Kalimantan Timur</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleNav() { document.getElementById('navLinks').classList.toggle('open'); }
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

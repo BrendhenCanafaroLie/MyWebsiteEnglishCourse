@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SpeakUp English — Kursus Bahasa Inggris Online</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0a1628;
+      --navy2: #112240;
+      --teal: #00b4d8;
+      --teal-light: #90e0ef;
+      --gold: #f4a261;
+      --cream: #fdf8f0;
+      --white: #ffffff;
+      --gray: #8892a4;
+      --card-bg: #142338;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(10, 22, 40, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(0, 180, 216, 0.15);
+      padding: 0 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .logo span { color: var(--teal); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--teal);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--teal); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: var(--teal); }
+    .nav-links a.active::after { width: 100%; }
+
+    .nav-cta {
+      background: var(--teal);
+      color: var(--navy) !important;
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-weight: 600 !important;
+      transition: background 0.2s, transform 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--teal-light) !important; transform: translateY(-1px); }
+    .nav-cta::after { display: none !important; }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      padding: 80px 6% 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0,180,216,0.12) 0%, transparent 70%);
+      top: -100px; right: -100px;
+      border-radius: 50%;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(244,162,97,0.08) 0%, transparent 70%);
+      bottom: -50px; left: 10%;
+      border-radius: 50%;
+    }
+
+    .hero-content { max-width: 620px; position: relative; z-index: 2; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,180,216,0.12);
+      border: 1px solid rgba(0,180,216,0.3);
+      border-radius: 50px;
+      padding: 6px 16px;
+      font-size: 0.8rem;
+      color: var(--teal);
+      font-weight: 500;
+      margin-bottom: 24px;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-badge::before { content: '✦'; font-size: 0.7rem; }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      line-height: 1.1;
+      font-weight: 900;
+      margin-bottom: 20px;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--teal);
+      position: relative;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--gray);
+      line-height: 1.75;
+      margin-bottom: 36px;
+      max-width: 520px;
+    }
+
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    .btn-primary {
+      background: var(--teal);
+      color: var(--navy);
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(0,180,216,0.3);
+    }
+
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,180,216,0.4); }
+
+    .btn-outline {
+      border: 1.5px solid rgba(255,255,255,0.2);
+      color: var(--white);
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .btn-outline:hover { border-color: var(--teal); background: rgba(0,180,216,0.08); }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 56px;
+      padding-top: 36px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .stat-item {
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--white);
+    }
+  }
+
+    .stat-num span { color: var(--teal); }
+    .stat-label { font-size: 0.78rem; color: var(--gray); margin-top: 2px; letter-spacing: 0.3px; }
+
+    /* ===== SECTION TITLES ===== */
+    section { padding: 80px 6%; }
+
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      color: var(--teal);
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      color: var(--gray);
+      font-size: 0.98rem;
+      line-height: 1.7;
+      max-width: 500px;
+    }
+
+    /* ===== FEATURES ===== */
+    .features-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 50px;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(0,180,216,0.1);
+      border-radius: 16px;
+      padding: 32px 28px;
+      flex: 1 1 calc(25% - 20px);
+      min-width: 220px;
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+      cursor: default;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(0,180,216,0.4);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+    }
+
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+
+    .feature-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p { font-size: 0.88rem; color: var(--gray); line-height: 1.65; }
+
+    /* ===== COURSES (CARDS) ===== */
+    .courses-section { background: var(--navy2); }
+
+    .courses-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 50px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .courses-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .course-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      overflow: hidden;
+      flex: 1 1 calc(33.333% - 24px);
+      min-width: 260px;
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+      cursor: pointer;
+    }
+
+    .course-card:hover {
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: 0 24px 50px rgba(0,0,0,0.4);
+      border-color: rgba(0,180,216,0.35);
+    }
+
+    .course-thumb {
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .course-thumb.c1 { background: linear-gradient(135deg, #1a3a5c, #0d2137); }
+    .course-thumb.c2 { background: linear-gradient(135deg, #1a2d4a, #0f1f35); }
+    .course-thumb.c3 { background: linear-gradient(135deg, #1f2b44, #0a1628); }
+    .course-thumb.c4 { background: linear-gradient(135deg, #162940, #091826); }
+    .course-thumb.c5 { background: linear-gradient(135deg, #192e47, #0c1f32); }
+    .course-thumb.c6 { background: linear-gradient(135deg, #1c3248, #0e2034); }
+
+    .course-body { padding: 22px 22px 26px; }
+
+    .course-level {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 50px;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    .level-beginner { background: rgba(0,180,216,0.15); color: var(--teal); }
+    .level-intermediate { background: rgba(244,162,97,0.15); color: var(--gold); }
+    .level-advanced { background: rgba(255,100,100,0.12); color: #ff8080; }
+
+    .course-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+
+    .course-body p { font-size: 0.84rem; color: var(--gray); line-height: 1.6; margin-bottom: 16px; }
+
+    .course-meta {
+      display: flex;
+      gap: 16px;
+      font-size: 0.78rem;
+      color: var(--gray);
+      padding-top: 14px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .course-meta span { display: flex; align-items: center; gap: 5px; }
+
+    /* ===== TESTIMONIALS ===== */
+    .testi-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 50px;
+    }
+
+    .testi-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 28px;
+      flex: 1 1 calc(33.333% - 20px);
+      min-width: 250px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .testi-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+    }
+
+    .stars { color: var(--gold); font-size: 0.9rem; margin-bottom: 14px; }
+
+    .testi-text {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: #c8d6e8;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .testi-author { display: flex; align-items: center; gap: 12px; }
+
+    .testi-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal), var(--navy2));
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.9rem; color: var(--white);
+      flex-shrink: 0;
+    }
+
+    .testi-name { font-weight: 600; font-size: 0.88rem; }
+    .testi-role { font-size: 0.75rem; color: var(--gray); }
+
+    /* ===== CTA ===== */
+    .cta-section {
+      background: linear-gradient(135deg, #0d2137 0%, #001525 100%);
+      border-radius: 24px;
+      margin: 0 6% 80px;
+      padding: 60px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(0,180,216,0.15);
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(0,180,216,0.1) 0%, transparent 70%);
+      top: -200px; left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .cta-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .cta-section p { color: var(--gray); margin-bottom: 32px; font-size: 1rem; position: relative; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #060f1c;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 50px 6% 30px;
+    }
+
+    .footer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand { flex: 2 1 200px; }
+    .footer-brand .logo { display: block; margin-bottom: 12px; }
+    .footer-brand p { font-size: 0.85rem; color: var(--gray); line-height: 1.7; max-width: 260px; }
+
+    .footer-col { flex: 1 1 150px; }
+    .footer-col h4 { font-size: 0.82rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--gray); margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a { color: #8892a4; font-size: 0.86rem; text-decoration: none; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--teal); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.8rem;
+      color: var(--gray);
+    }
+
+    /* ===== HAMBURGER ===== */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      width: 24px; height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all 0.3s;
+      display: block;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 700px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 68px; left: 0; right: 0;
+        background: rgba(10,22,40,0.98);
+        flex-direction: column;
+        padding: 20px 6% 24px;
+        gap: 0;
+        border-bottom: 1px solid rgba(0,180,216,0.15);
+      }
+
+      .nav-links.open { display: flex; }
+      .nav-links li a { display: block; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+      .hamburger { display: flex; }
+
+      .feature-card { flex: 1 1 calc(90% - 20px); }
+      .course-card  { flex: 1 1 90%; }
+      .testi-card   { flex: 1 1 90%; }
+
+      .hero-stats { gap: 24px; }
+      .cta-section { padding: 40px 24px; margin: 0 4% 60px; }
+      .courses-header { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (min-width: 701px) {
+      .course-card  { flex: 1 1 calc(50% - 24px); }
+      .feature-card { flex: 1 1 calc(50% - 20px); }
+    }
+
+    @media (min-width: 1024px) {
+      .course-card  { flex: 1 1 calc(33.333% - 24px); }
+      .feature-card { flex: 1 1 calc(25% - 20px); }
+    }
+  </style>
+
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="index.html" class="logo">Speak<span>Up</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="menu.html" class="active">Beranda</a></li>
+      <li><a href="kursus.html">Kursus</a></li>
+      <li><a href="tentang.html">Tentang Kami</a></li>
+      <li><a href="kontak.html">Kontak</a></li>
+      <li><a href="daftar.html" class="nav-cta">Daftar Sekarang</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">Kursus Bahasa Inggris Online #1</div>
+      <h1>Kuasai <em>Bahasa Inggris</em> dengan Percaya Diri</h1>
+      <p>Belajar bahasa Inggris secara efektif bersama instruktur berpengalaman. Dari pemula hingga mahir — kami hadir untuk menemanimu di setiap langkah.</p>
+      <div class="hero-btns">
+        <a href="kursus.html" class="btn-primary">Lihat Program Kursus</a>
+        <a href="tentang.html" class="btn-outline">Pelajari Lebih Lanjut</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">2<span>K+</span></div>
+          <div class="stat-label">Siswa Aktif</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">15<span>+</span></div>
+          <div class="stat-label">Instruktur Ahli</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">98<span>%</span></div>
+          <div class="stat-label">Kepuasan Siswa</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section>
+    <div class="section-label">Kenapa SpeakUp?</div>
+    <div class="section-title">Belajar dengan Cara<br>yang Tepat</div>
+    <p class="section-sub">Kami menawarkan pengalaman belajar yang menyenangkan, terstruktur, dan terbukti efektif untuk semua kalangan.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3>Kurikulum Terstruktur</h3>
+        <p>Materi dirancang oleh para ahli linguistik dengan metode pembelajaran yang terbukti secara ilmiah.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌐</div>
+        <h3>Belajar Online Fleksibel</h3>
+        <p>Akses materi kapan saja, di mana saja. Sesuaikan jadwal belajar dengan aktivitas harianmu.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">👩‍🏫</div>
+        <h3>Instruktur Berpengalaman</h3>
+        <p>Dibimbing oleh instruktur bersertifikat TEFL/IELTS dengan pengalaman mengajar lebih dari 5 tahun.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📜</div>
+        <h3>Sertifikat Resmi</h3>
+        <p>Dapatkan sertifikat yang diakui oleh ratusan perusahaan dan instansi pendidikan di Indonesia.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COURSES PREVIEW -->
+  <section class="courses-section">
+    <div class="courses-header">
+      <div>
+        <div class="section-label">Program Unggulan</div>
+        <div class="section-title">Pilih Kursus<br>Sesuai Levelmu</div>
+      </div>
+      <a href="kursus.html" class="btn-outline" style="white-space:nowrap;">Semua Kursus →</a>
+    </div>
+    <div class="courses-grid">
+      <div class="course-card">
+        <div class="course-thumb c1">🔤</div>
+        <div class="course-body">
+          <span class="course-level level-beginner">Pemula</span>
+          <h3>English for Beginners</h3>
+          <p>Mulai dari nol! Belajar kosakata dasar, tata bahasa, dan percakapan sehari-hari.</p>
+          <div class="course-meta">
+            <span>⏱ 8 Minggu</span>
+            <span>📖 24 Materi</span>
+            <span>⭐ 4.9</span>
+          </div>
+        </div>
+      </div>
+      <div class="course-card">
+        <div class="course-thumb c2">💬</div>
+        <div class="course-body">
+          <span class="course-level level-intermediate">Menengah</span>
+          <h3>Conversational English</h3>
+          <p>Tingkatkan kemampuan berbicara dengan latihan percakapan nyata dan topik aktual.</p>
+          <div class="course-meta">
+            <span>⏱ 10 Minggu</span>
+            <span>📖 30 Materi</span>
+            <span>⭐ 4.8</span>
+          </div>
+        </div>
+      </div>
+      <div class="course-card">
+        <div class="course-thumb c3">📝</div>
+        <div class="course-body">
+          <span class="course-level level-advanced">Lanjutan</span>
+          <h3>Business English</h3>
+          <p>Kuasai bahasa Inggris profesional untuk meeting, presentasi, dan korespondensi bisnis.</p>
+          <div class="course-meta">
+            <span>⏱ 12 Minggu</span>
+            <span>📖 36 Materi</span>
+            <span>⭐ 4.9</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section>
+    <div class="section-label">Kata Mereka</div>
+    <div class="section-title">Ribuan Siswa Sudah<br>Merasakan Manfaatnya</div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"Setelah ikut SpeakUp selama 3 bulan, aku berhasil lulus interview kerja di perusahaan multinasional. Materi dan instrukturnya luar biasa!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar">AR</div>
+          <div>
+            <div class="testi-name">Andi Rachman</div>
+            <div class="testi-role">Software Engineer — Jakarta</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"Sistemnya sangat fleksibel. Aku bisa belajar di sela-sela kuliah tanpa merasa terbebani. Nilai TOEFL-ku naik 80 poin!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar">SR</div>
+          <div>
+            <div class="testi-name">Sari Ramadhani</div>
+            <div class="testi-role">Mahasiswa — Samarinda</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"Instrukturnya sabar dan interaktif. Sekarang aku sudah bisa presentasi dalam bahasa Inggris di depan klien asing dengan percaya diri."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">DP</div>
+          <div>
+            <div class="testi-name">Dika Pratama</div>
+            <div class="testi-role">Marketing Manager — Balikpapan</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <h2>Mulai Perjalanan Bahasa Inggrismu Hari Ini</h2>
+    <p>Bergabunglah dengan lebih dari 2.000 siswa aktif dan raih impianmu bersama SpeakUp English.</p>
+    <a href="daftar.html" class="btn-primary">Daftar Gratis Sekarang</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">Speak<span style="color:var(--teal)">Up</span></a>
+        <p>Platform kursus bahasa Inggris online yang membantu Anda mencapai potensi terbaik dalam berkomunikasi secara global.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigasi</h4>
+        <ul>
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="kursus.html">Kursus</a></li>
+          <li><a href="tentang.html">Tentang Kami</a></li>
+          <li><a href="kontak.html">Kontak</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Program</h4>
+        <ul>
+          <li><a href="kursus.html">English for Beginners</a></li>
+          <li><a href="kursus.html">Conversational English</a></li>
+          <li><a href="kursus.html">Business English</a></li>
+          <li><a href="kursus.html">IELTS Preparation</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 SpeakUp English. Dibuat dengan ❤ untuk pelajar Indonesia.</span>
+      <span>Samarinda, Kalimantan Timur</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleNav() {
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+  </script>
+</body>
+</html>
