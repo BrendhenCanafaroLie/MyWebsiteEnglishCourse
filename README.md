@@ -28,7 +28,8 @@ Kelompok 9:
 > Profil lembaga, tim instruktur, dan pencapaian
 
 ### Halaman Kontak (kontak.html)
-![Kontak Preview](https://via.placeholder.com/900x400/0a1628/ffffff?text=Halaman+Kontak)
+<img width="1358" height="1876" alt="image" src="https://github.com/user-attachments/assets/29a79342-1491-4a9d-93b9-517cf503c7dc" />
+
 > Form kontak dengan validasi nama, email, dan pesan
 
 ### Halaman Daftar (daftar.html)
