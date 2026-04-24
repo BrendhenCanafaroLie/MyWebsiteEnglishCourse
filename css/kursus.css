@@ -1,0 +1,115 @@
+/* ============================================================
+   kursus.css — SpeakUp English
+   Page-specific styles: filter bar, course list, promo banner
+   ============================================================ */
+
+/* ===== FILTER BAR ===== */
+.filter-bar {
+  padding: 28px 6%;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: var(--navy2);
+}
+
+.filter-btn {
+  padding: 8px 20px;
+  border-radius: 50px;
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  background: transparent;
+  color: var(--gray);
+  font-size: 0.84rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'DM Sans', sans-serif;
+}
+.filter-btn:hover,
+.filter-btn.active {
+  border-color: var(--teal);
+  color: var(--teal);
+  background: rgba(0, 180, 216, 0.08);
+}
+
+/* ===== COURSES SECTION ===== */
+.courses-section { padding: 60px 6%; }
+
+/* ===== PROMO BANNER ===== */
+.promo-banner {
+  background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
+  border-radius: 16px;
+  padding: 28px 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 50px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.promo-text h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+.promo-text p { font-size: 0.88rem; color: rgba(10, 22, 40, 0.75); }
+
+.btn-promo {
+  background: var(--navy);
+  color: var(--white);
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+.btn-promo:hover { opacity: 0.85; }
+
+/* ===== COURSE PRICE & ENROLL BUTTON ===== */
+.course-price {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.price {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--white);
+}
+.price-badge {
+  font-size: 0.75rem;
+  color: var(--gray);
+  margin-left: 6px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+}
+.btn-enroll {
+  background: rgba(0, 180, 216, 0.15);
+  color: var(--teal);
+  border: 1px solid rgba(0, 180, 216, 0.3);
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+}
+.btn-enroll:hover {
+  background: var(--teal);
+  color: var(--navy);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 700px) {
+  .course-card { flex: 1 1 90%; }
+  .promo-banner { flex-direction: column; align-items: flex-start; }
+}
+@media (min-width: 701px)  { .course-card { flex: 1 1 calc(50% - 24px); } }
+@media (min-width: 1024px) { .course-card { flex: 1 1 calc(33.333% - 24px); } }

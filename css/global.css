@@ -1,0 +1,338 @@
+/* ============================================================
+   global.css — SpeakUp English
+   Shared styles: variables, reset, navbar, footer,
+   page-header, section-label, course cards
+   ============================================================ */
+
+/* ----- CSS Variables ----- */
+:root {
+  --navy:       #0a1628;
+  --navy2:      #112240;
+  --teal:       #00b4d8;
+  --teal-light: #90e0ef;
+  --gold:       #f4a261;
+  --cream:      #fdf8f0;
+  --white:      #ffffff;
+  --gray:       #8892a4;
+  --card-bg:    #142338;
+}
+
+/* ----- Reset ----- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ----- Base ----- */
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--navy);
+  color: var(--white);
+  overflow-x: hidden;
+}
+
+/* ===== NAVBAR ===== */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: rgba(10, 22, 40, 0.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(0, 180, 216, 0.15);
+  padding: 0 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--white);
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+.logo span { color: var(--teal); }
+
+/* Desktop nav */
+.nav-links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 28px;
+}
+
+.nav-links a {
+  color: var(--gray);
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  transition: color 0.2s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--teal);
+  transition: width 0.3s;
+}
+.nav-links a:hover           { color: var(--teal); }
+.nav-links a:hover::after    { width: 100%; }
+.nav-links a.active          { color: var(--teal); }
+.nav-links a.active::after   { width: 100%; }
+
+.nav-cta {
+  margin-left: 5px;
+  background: var(--teal);
+  color: var(--navy) !important;
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-weight: 600 !important;
+  transition: background 0.2s, transform 0.2s !important;
+}
+.nav-cta:hover         { background: var(--teal-light) !important; transform: translateY(-1px); }
+.nav-cta::after        { display: none !important; }
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 200;
+  position: relative;
+}
+.hamburger span {
+  width: 24px;
+  height: 2px;
+  background: var(--white);
+  border-radius: 2px;
+  transition: all 0.3s;
+  display: block;
+}
+
+/* ===== PAGE HEADER (Kursus / Tentang / Kontak) ===== */
+.page-header {
+  padding: 80px 6% 60px;
+  background: linear-gradient(180deg, var(--navy2) 0%, var(--navy) 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.page-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  margin-bottom: 16px;
+}
+.page-header p {
+  color: var(--gray);
+  font-size: 1rem;
+  line-height: 1.7;
+  max-width: 560px;
+}
+
+.breadcrumb {
+  font-size: 0.78rem;
+  color: var(--gray);
+  margin-bottom: 16px;
+}
+.breadcrumb a {
+  color: var(--teal);
+  text-decoration: none;
+}
+
+.section-label {
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  color: var(--teal);
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+/* ===== SHARED COURSE CARDS ===== */
+.courses-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.course-card {
+  background: var(--card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  overflow: hidden;
+  flex: 1 1 calc(33.333% - 24px);
+  min-width: 260px;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  cursor: pointer;
+}
+.course-card:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.4);
+  border-color: rgba(0, 180, 216, 0.35);
+}
+
+.course-thumb {
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+}
+.course-thumb.c1 { background: linear-gradient(135deg, #1a3a5c, #0d2137); }
+.course-thumb.c2 { background: linear-gradient(135deg, #1a2d4a, #0f1f35); }
+.course-thumb.c3 { background: linear-gradient(135deg, #1f2b44, #0a1628); }
+.course-thumb.c4 { background: linear-gradient(135deg, #162940, #091826); }
+.course-thumb.c5 { background: linear-gradient(135deg, #192e47, #0c1f32); }
+.course-thumb.c6 { background: linear-gradient(135deg, #1c3248, #0e2034); }
+
+.course-body { padding: 22px 22px 26px; }
+
+.course-level {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 50px;
+  margin-bottom: 12px;
+  display: inline-block;
+}
+.level-beginner    { background: rgba(0, 180, 216, 0.15);  color: var(--teal); }
+.level-intermediate{ background: rgba(244, 162, 97, 0.15); color: var(--gold); }
+.level-advanced    { background: rgba(255, 100, 100, 0.12); color: #ff8080; }
+
+.course-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+.course-body p {
+  font-size: 0.84rem;
+  color: var(--gray);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.course-meta {
+  display: flex;
+  gap: 14px;
+  font-size: 0.78rem;
+  color: var(--gray);
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  flex-wrap: wrap;
+}
+.course-meta span { display: flex; align-items: center; gap: 5px; }
+
+/* ===== FOOTER ===== */
+footer {
+  background: #060f1c;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 50px 6% 30px;
+}
+.footer-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+.footer-brand { flex: 2 1 200px; }
+.footer-brand .logo { display: block; margin-bottom: 12px; }
+.footer-brand p {
+  font-size: 0.85rem;
+  color: var(--gray);
+  line-height: 1.7;
+  max-width: 260px;
+}
+.footer-col { flex: 1 1 150px; }
+.footer-col h4 {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-bottom: 16px;
+}
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul li a {
+  color: #8892a4;
+  font-size: 0.86rem;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-col ul li a:hover { color: var(--teal); }
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.8rem;
+  color: var(--gray);
+}
+
+/* ===== RESPONSIVE — MOBILE NAVBAR ===== */
+@media (max-width: 700px) {
+
+  /* Overlay gelap saat menu terbuka */
+  body.nav-open::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 99;
+  }
+
+  .hamburger { display: flex; }
+
+  /* Sembunyikan nav, slide dari kanan */
+  .nav-links {
+    display: flex;                      /* tetap flex, bukan display:none */
+    position: fixed;
+    top: 0;
+    right: -100%;                       /* tersembunyi di luar layar */
+    width: 75%;
+    max-width: 300px;
+    height: 100vh;
+    background: var(--navy2);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 80px 30px 30px;
+    gap: 0;
+    transition: right 0.3s ease;
+    z-index: 150;
+    border-left: 1px solid rgba(0, 180, 216, 0.15);
+  }
+
+  /* Muncul saat .open */
+  .nav-links.open { right: 0; }
+
+  .nav-links li { width: 100%; }
+
+  .nav-links li a {
+    display: block;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 1rem;
+  }
+
+  /* Tombol CTA tetap proporsional, tidak full-width */
+  .nav-links .nav-cta {
+    display: inline-block;
+    width: auto;
+    margin: 16px 0 0 0;
+    padding: 10px 24px;
+  }
+}
