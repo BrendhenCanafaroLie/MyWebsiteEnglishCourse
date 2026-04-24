@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kursus — SpeakUp English</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/kursus.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="index.html" class="logo">Speak<span>Up</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Beranda</a></li>
+      <li><a href="kursus.html" class="active">Kursus</a></li>
+      <li><a href="tentang.html">Tentang Kami</a></li>
+      <li><a href="kontak.html">Kontak</a></li>
+      <li><a href="daftar.html" class="nav-cta">Daftar Sekarang</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="breadcrumb"><a href="index.html">Beranda</a> / Kursus</div>
+    <div class="section-label">Program Belajar</div>
+    <h1>Semua Program Kursus</h1>
+    <p>Temukan program kursus yang sesuai dengan level dan tujuanmu. Dari pemula hingga persiapan ujian internasional.</p>
+  </div>
+
+  <!-- FILTER BAR -->
+  <div class="filter-bar">
+    <button class="filter-btn active">Semua</button>
+    <button class="filter-btn">Pemula</button>
+    <button class="filter-btn">Menengah</button>
+    <button class="filter-btn">Lanjutan</button>
+    <button class="filter-btn">Sertifikasi</button>
+  </div>
+
+  <!-- COURSES LIST -->
+  <section class="courses-section">
+
+    <div class="promo-banner">
+      <div class="promo-text">
+        <h3>🎉 Promo Pendaftaran Baru — Diskon 30%!</h3>
+        <p>Berlaku hingga 31 Mei 2025. Daftar sekarang dan mulai belajar hari ini.</p>
+      </div>
+      <a href="daftar.html" class="btn-promo">Klaim Diskon</a>
+    </div>
+
+    <div class="courses-grid">
+
+      <div class="course-card">
+        <div class="course-thumb c1">🔤</div>
+        <div class="course-body">
+          <span class="course-level level-beginner">Pemula</span>
+          <h3>English for Beginners</h3>
+          <p>Pelajaran dasar bahasa Inggris mulai dari alfabet, kosakata, hingga kalimat sederhana untuk kehidupan sehari-hari.</p>
+          <div class="course-meta">
+            <span>⏱ 8 Minggu</span>
+            <span>📖 24 Materi</span>
+            <span>⭐ 4.9</span>
+            <span>👥 452 Siswa</span>
+          </div>
+          <div class="course-price">
+            <div><span class="price">Rp 299.000</span><span class="price-badge">/ kursus</span></div>
+            <a href="daftar.html" class="btn-enroll">Daftar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-thumb c2">💬</div>
+        <div class="course-body">
+          <span class="course-level level-intermediate">Menengah</span>
+          <h3>Conversational English</h3>
+          <p>Latih kemampuan berbicara dengan simulasi percakapan nyata, role play, dan diskusi topik aktual.</p>
+          <div class="course-meta">
+            <span>⏱ 10 Minggu</span>
+            <span>📖 30 Materi</span>
+            <span>⭐ 4.8</span>
+            <span>👥 387 Siswa</span>
+          </div>
+          <div class="course-price">
+            <div><span class="price">Rp 399.000</span><span class="price-badge">/ kursus</span></div>
+            <a href="daftar.html" class="btn-enroll">Daftar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-thumb c3">📝</div>
+        <div class="course-body">
+          <span class="course-level level-advanced">Lanjutan</span>
+          <h3>Business English</h3>
+          <p>Kuasai bahasa Inggris profesional: email bisnis, presentasi, negosiasi, dan rapat formal.</p>
+          <div class="course-meta">
+            <span>⏱ 12 Minggu</span>
+            <span>📖 36 Materi</span>
+            <span>⭐ 4.9</span>
+            <span>👥 291 Siswa</span>
+          </div>
+          <div class="course-price">
+            <div><span class="price">Rp 499.000</span><span class="price-badge">/ kursus</span></div>
+            <a href="daftar.html" class="btn-enroll">Daftar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-thumb c4">🎓</div>
+        <div class="course-body">
+          <span class="course-level level-advanced">Sertifikasi</span>
+          <h3>IELTS Preparation</h3>
+          <p>Program intensif persiapan IELTS dengan latihan soal, simulasi ujian, dan strategi menjawab soal.</p>
+          <div class="course-meta">
+            <span>⏱ 16 Minggu</span>
+            <span>📖 48 Materi</span>
+            <span>⭐ 4.9</span>
+            <span>👥 213 Siswa</span>
+          </div>
+          <div class="course-price">
+            <div><span class="price">Rp 699.000</span><span class="price-badge">/ kursus</span></div>
+            <a href="daftar.html" class="btn-enroll">Daftar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-thumb c5">✍️</div>
+        <div class="course-body">
+          <span class="course-level level-intermediate">Menengah</span>
+          <h3>English Writing Skills</h3>
+          <p>Pelajari cara menulis esai, laporan, dan artikel dalam bahasa Inggris yang baik dan benar.</p>
+          <div class="course-meta">
+            <span>⏱ 10 Minggu</span>
+            <span>📖 28 Materi</span>
+            <span>⭐ 4.7</span>
+            <span>👥 178 Siswa</span>
+          </div>
+          <div class="course-price">
+            <div><span class="price">Rp 349.000</span><span class="price-badge">/ kursus</span></div>
+            <a href="daftar.html" class="btn-enroll">Daftar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-thumb c6">🎤</div>
+        <div class="course-body">
+          <span class="course-level level-advanced">Lanjutan</span>
+          <h3>Public Speaking in English</h3>
+          <p>Tingkatkan kepercayaan diri berbicara di depan umum dalam bahasa Inggris. Cocok untuk mahasiswa dan profesional.</p>
+          <div class="course-meta">
+            <span>⏱ 8 Minggu</span>
+            <span>📖 20 Materi</span>
+            <span>⭐ 4.8</span>
+            <span>👥 156 Siswa</span>
+          </div>
+          <div class="course-price">
+            <div><span class="price">Rp 449.000</span><span class="price-badge">/ kursus</span></div>
+            <a href="daftar.html" class="btn-enroll">Daftar</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">Speak<span>Up</span></a>
+        <p>Platform kursus bahasa Inggris online yang membantu Anda mencapai potensi terbaik dalam berkomunikasi secara global.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigasi</h4>
+        <ul>
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="kursus.html">Kursus</a></li>
+          <li><a href="tentang.html">Tentang Kami</a></li>
+          <li><a href="kontak.html">Kontak</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Program</h4>
+        <ul>
+          <li><a href="kursus.html">English for Beginners</a></li>
+          <li><a href="kursus.html">Conversational English</a></li>
+          <li><a href="kursus.html">Business English</a></li>
+          <li><a href="kursus.html">IELTS Preparation</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 SpeakUp English. Dibuat dengan ❤ untuk pelajar Indonesia.</span>
+      <span>Samarinda, Kalimantan Timur</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/kursus.js"></script>
+</body>
+</html>
