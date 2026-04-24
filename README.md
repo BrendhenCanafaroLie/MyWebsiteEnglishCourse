@@ -13,15 +13,18 @@ Kelompok 9:
 ## 🖼️ Preview
 
 ### Halaman Utama (index.html)
-![Homepage Preview](https://via.placeholder.com/900x500/0a1628/00b4d8?text=SpeakUp+Homepage+Preview)
+<img width="1358" height="3587" alt="image" src="https://github.com/user-attachments/assets/eb2e2002-ae28-4427-b8b7-d13a5129c079" />
+
 > Hero section dengan statistik, fitur unggulan, dan preview kursus
 
 ### Halaman Kursus (kursus.html)
-![Kursus Preview](https://via.placeholder.com/900x400/0d1f35/f4a261?text=Halaman+Kursus+Preview)
+<img width="1358" height="1979" alt="image" src="https://github.com/user-attachments/assets/9908ffe0-3627-4747-a4f3-2180cf664e74" />
+
 > 6 program kursus dengan harga, rating, dan tombol pendaftaran
 
 ### Halaman Tentang (tentang.html)
-![Tentang Preview](https://via.placeholder.com/900x400/112240/90e0ef?text=Halaman+Tentang+Kami)
+<img width="1358" height="2949" alt="image" src="https://github.com/user-attachments/assets/7de7180b-0b8e-48b4-b0ea-970512ce37cd" />
+
 > Profil lembaga, tim instruktur, dan pencapaian
 
 ### Halaman Kontak (kontak.html)
@@ -29,7 +32,8 @@ Kelompok 9:
 > Form kontak dengan validasi nama, email, dan pesan
 
 ### Halaman Daftar (daftar.html)
-![Daftar Preview](https://via.placeholder.com/900x400/112240/00b4d8?text=Halaman+Pendaftaran)
+<img width="1358" height="1234" alt="image" src="https://github.com/user-attachments/assets/2fa49b7e-52b0-4580-9721-ac0c5e696f2c" />
+
 > Form pendaftaran dengan validasi email dan nomor WhatsApp Indonesia
 
 ---
