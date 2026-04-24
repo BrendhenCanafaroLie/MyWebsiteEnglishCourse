@@ -101,63 +101,6 @@ MyWebsiteEnglishCourse/
 
 ---
 
-## 🎨 Desain & Teknologi
-
-### Stack Teknologi
-- **HTML5** — Semantic markup, multi-page architecture
-- **CSS3** — Custom properties (CSS variables), Flexbox, Grid, Responsive
-- **Vanilla JavaScript** — DOM manipulation, form validation, IntersectionObserver API
-- **Google Fonts** — `Playfair Display` (heading) + `DM Sans` (body)
-
-### Color Palette
-| Nama | Hex | Penggunaan |
-|------|-----|------------|
-| Navy | `#0a1628` | Background utama |
-| Navy 2 | `#112240` | Background section |
-| Teal | `#00b4d8` | Aksen utama, CTA |
-| Teal Light | `#90e0ef` | Hover states |
-| Gold | `#f4a261` | Badge level menengah |
-| Card BG | `#142338` | Background kartu |
-| Gray | `#8892a4` | Teks sekunder |
-
-### Responsif (Mobile-Friendly)
-- **Hamburger menu** dengan slide-in dari kanan (`right: -100%` → `right: 0`)
-- **Overlay gelap** saat mobile nav terbuka
-- Breakpoint utama: `@media (max-width: 700px)`
-
----
-
-## 🚀 Cara Menjalankan
-
-Karena ini adalah website statis (tidak memerlukan server atau build tool), cukup:
-
-### Opsi 1 — Buka langsung di browser
-```bash
-# Clone repository
-git clone https://github.com/BrendhenCanafaroLie/MyWebsiteEnglishCourse.git
-
-# Masuk ke folder
-cd MyWebsiteEnglishCourse
-
-# Buka di browser
-open index.html       # macOS
-start index.html      # Windows
-xdg-open index.html   # Linux
-```
-
-### Opsi 2 — Live Server (VS Code)
-1. Install ekstensi **Live Server** di VS Code
-2. Klik kanan `index.html` → `Open with Live Server`
-3. Website terbuka otomatis di `http://127.0.0.1:5500`
-
-### Opsi 3 — Python HTTP Server
-```bash
-cd MyWebsiteEnglishCourse
-python -m http.server 8000
-# Buka http://localhost:8000
-```
-
----
 
 ## 📄 Navigasi Halaman
 
@@ -178,5 +121,3 @@ python -m http.server 8000
 Website ini dibuat sebagai proyek front-end untuk menampilkan layanan kursus bahasa Inggris secara profesional, dengan desain dark-mode modern bernuansa navy dan teal.
 
 ---
-
-*© 2025 SpeakUp English. Dibuat dengan ❤ untuk pelajar Indonesia.*
