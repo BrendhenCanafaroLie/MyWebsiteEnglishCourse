@@ -1,115 +1,68 @@
-/* ============================================================
-   kursus.css — SpeakUp English
-   Page-specific styles: filter bar, course list, promo banner
-   ============================================================ */
+/* kursus.css — SpeakUp English Checkpoint 2 */
 
-/* ===== FILTER BAR ===== */
-.filter-bar {
-  padding: 28px 6%;
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  background: var(--navy2);
+.search-bar-wrap { padding: 24px 6% 0; }
+.search-bar {
+  display: flex; align-items: center;
+  background: #142338; border: 1px solid rgba(0,180,216,0.2);
+  border-radius: 50px; padding: 12px 20px; gap: 10px;
+  max-width: 600px; transition: border-color 0.3s;
 }
+.search-bar:focus-within { border-color: rgba(0,180,216,0.6); box-shadow: 0 0 0 3px rgba(0,180,216,0.08); }
+.search-icon { font-size: 1.1rem; flex-shrink: 0; }
+.search-bar input { flex:1; background:transparent; border:none; outline:none; color:#fff; font-family:'DM Sans',sans-serif; font-size:0.95rem; }
+.search-bar input::placeholder { color: #8892a4; }
+.search-clear { background:none; border:none; color:#8892a4; cursor:pointer; font-size:1rem; padding:0 4px; transition:color 0.2s; }
+.search-clear:hover { color:#fff; }
+.search-info { margin-top:10px; font-size:0.82rem; color:#8892a4; display:none; }
 
-.filter-btn {
-  padding: 8px 20px;
-  border-radius: 50px;
-  border: 1.5px solid rgba(255, 255, 255, 0.12);
-  background: transparent;
-  color: var(--gray);
-  font-size: 0.84rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s;
-  font-family: 'DM Sans', sans-serif;
-}
-.filter-btn:hover,
-.filter-btn.active {
-  border-color: var(--teal);
-  color: var(--teal);
-  background: rgba(0, 180, 216, 0.08);
-}
+.filter-bar { display:flex; gap:10px; flex-wrap:wrap; padding:20px 6%; }
+.filter-btn { background:#142338; border:1px solid rgba(255,255,255,0.08); color:#8892a4; padding:8px 20px; border-radius:50px; font-family:'DM Sans',sans-serif; font-size:0.86rem; font-weight:500; cursor:pointer; transition:all 0.2s; }
+.filter-btn:hover { border-color:rgba(0,180,216,0.4); color:#00b4d8; }
+.filter-btn.active { background:#00b4d8; color:#0a1628; border-color:#00b4d8; font-weight:600; }
 
-/* ===== COURSES SECTION ===== */
-.courses-section { padding: 60px 6%; }
+.courses-section { padding: 0 6% 80px; }
 
-/* ===== PROMO BANNER ===== */
-.promo-banner {
-  background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
-  border-radius: 16px;
-  padding: 28px 36px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 50px;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-.promo-text h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.3rem;
-  color: var(--navy);
-  margin-bottom: 6px;
-}
-.promo-text p { font-size: 0.88rem; color: rgba(10, 22, 40, 0.75); }
+.promo-banner { background:linear-gradient(135deg,#1a3a5c,#0d2137); border:1px solid rgba(0,180,216,0.2); border-radius:16px; padding:24px 28px; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-bottom:28px; }
+.promo-text h3 { font-size:1rem; margin-bottom:4px; }
+.promo-text p  { font-size:0.84rem; color:#8892a4; }
+.btn-promo { background:#f4a261; color:#0a1628; padding:10px 24px; border-radius:50px; font-weight:600; text-decoration:none; font-size:0.9rem; white-space:nowrap; transition:background 0.2s; }
+.btn-promo:hover { background:#e8904a; }
 
-.btn-promo {
-  background: var(--navy);
-  color: var(--white);
-  padding: 12px 28px;
-  border-radius: 50px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  text-decoration: none;
-  white-space: nowrap;
-  transition: opacity 0.2s;
-}
-.btn-promo:hover { opacity: 0.85; }
+.no-result { text-align:center; padding:60px 20px; color:#8892a4; }
+.no-result-icon { font-size:3rem; margin-bottom:12px; }
 
-/* ===== COURSE PRICE & ENROLL BUTTON ===== */
-.course-price {
-  margin-top: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.price {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--white);
-}
-.price-badge {
-  font-size: 0.75rem;
-  color: var(--gray);
-  margin-left: 6px;
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 400;
-}
-.btn-enroll {
-  background: rgba(0, 180, 216, 0.15);
-  color: var(--teal);
-  border: 1px solid rgba(0, 180, 216, 0.3);
-  padding: 8px 18px;
-  border-radius: 50px;
-  font-size: 0.82rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.2s;
-  cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
-}
-.btn-enroll:hover {
-  background: var(--teal);
-  color: var(--navy);
-}
+.fav-btn { position:absolute; top:12px; right:12px; background:rgba(10,22,40,0.7); border:1px solid rgba(255,255,255,0.1); border-radius:50%; width:34px; height:34px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1rem; transition:all 0.2s; z-index:2; }
+.fav-btn:hover { background:rgba(0,180,216,0.2); border-color:rgba(0,180,216,0.4); }
+.fav-btn.fav-active { background:rgba(255,80,80,0.15); border-color:rgba(255,80,80,0.3); }
+.course-card { position:relative; cursor:pointer; }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 700px) {
-  .course-card { flex: 1 1 90%; }
-  .promo-banner { flex-direction: column; align-items: flex-start; }
+.course-price { display:flex; align-items:center; justify-content:space-between; margin-top:16px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.06); }
+.price { font-weight:700; color:#00b4d8; font-size:1.05rem; }
+.price-badge { font-size:0.76rem; color:#8892a4; margin-left:4px; }
+.btn-enroll { background:#00b4d8; color:#0a1628; padding:7px 16px; border-radius:50px; font-size:0.82rem; font-weight:600; text-decoration:none; transition:background 0.2s; }
+.btn-enroll:hover { background:#90e0ef; }
+
+.fav-float-btn { position:fixed; bottom:28px; right:28px; background:#0a1628; border:2px solid rgba(0,180,216,0.4); color:#fff; padding:12px 18px; border-radius:50px; cursor:pointer; font-size:1rem; font-weight:600; box-shadow:0 8px 30px rgba(0,0,0,0.4); z-index:500; transition:all 0.2s; font-family:'DM Sans',sans-serif; }
+.fav-float-btn:hover { background:#112240; border-color:#00b4d8; }
+.fav-badge { background:#ff5050; color:#fff; font-size:0.72rem; font-weight:700; padding:2px 6px; border-radius:50px; margin-left:6px; }
+
+.fav-panel { position:fixed; bottom:80px; right:28px; width:320px; max-height:380px; background:#112240; border:1px solid rgba(0,180,216,0.2); border-radius:16px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,0.5); z-index:500; }
+.fav-panel-header { display:flex; align-items:center; justify-content:space-between; padding:14px 18px; background:rgba(0,180,216,0.1); border-bottom:1px solid rgba(0,180,216,0.15); font-size:0.88rem; font-weight:600; }
+.fav-panel-close { background:none; border:none; color:#8892a4; cursor:pointer; font-size:0.82rem; }
+.fav-panel-list { padding:12px; overflow-y:auto; max-height:300px; }
+.fav-item { display:flex; align-items:center; justify-content:space-between; padding:10px 12px; background:rgba(255,255,255,0.03); border-radius:10px; margin-bottom:8px; font-size:0.84rem; }
+.fav-item-actions { display:flex; gap:8px; align-items:center; }
+.fav-link  { color:#00b4d8; text-decoration:none; font-size:0.8rem; }
+.fav-remove { background:none; border:none; color:#8892a4; cursor:pointer; font-size:0.9rem; }
+.fav-empty { color:#8892a4; font-size:0.85rem; text-align:center; padding:20px 0; }
+
+.fav-toast { position:fixed; bottom:90px; left:50%; transform:translateX(-50%) translateY(20px); background:#112240; border:1px solid rgba(0,180,216,0.3); color:#fff; padding:10px 22px; border-radius:50px; font-size:0.86rem; font-weight:500; opacity:0; transition:all 0.3s; z-index:600; pointer-events:none; white-space:nowrap; }
+.fav-toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+
+.field-error { color:#ff8080; font-size:0.78rem; margin-top:5px; display:none; }
+.input-error { border-color:rgba(255,80,80,0.5) !important; }
+
+@media (max-width:700px) {
+  .fav-panel { width:calc(100vw - 32px); right:16px; bottom:90px; }
+  .fav-float-btn { right:16px; bottom:20px; }
 }
-@media (min-width: 701px)  { .course-card { flex: 1 1 calc(50% - 24px); } }
-@media (min-width: 1024px) { .course-card { flex: 1 1 calc(33.333% - 24px); } }

@@ -1,3 +1,7 @@
+<?php
+// kontak.php — Halaman Kontak
+require_once __DIR__ . '/php/config.php';
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -11,60 +15,45 @@
 </head>
 <body>
 
-  <!-- NAVBAR -->
   <nav>
-    <a href="index.html" class="logo">Speak<span>Up</span></a>
+    <a href="index.php" class="logo">Speak<span>Up</span></a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="index.html">Beranda</a></li>
-      <li><a href="kursus.html">Kursus</a></li>
-      <li><a href="tentang.html">Tentang Kami</a></li>
-      <li><a href="kontak.html" class="active">Kontak</a></li>
-      <li><a href="daftar.html" class="nav-cta">Daftar Sekarang</a></li>
+      <li><a href="index.php">Beranda</a></li>
+      <li><a href="kursus.php">Kursus</a></li>
+      <li><a href="tentang.php">Tentang Kami</a></li>
+      <li><a href="kontak.php" class="active">Kontak</a></li>
+      <li><a href="daftar.php" class="nav-cta">Daftar Sekarang</a></li>
     </ul>
     <div class="hamburger" id="hamburger" onclick="toggleNav()">
       <span></span><span></span><span></span>
     </div>
   </nav>
 
-  <!-- PAGE HEADER -->
   <div class="page-header">
-    <div class="breadcrumb"><a href="index.html">Beranda</a> / Kontak</div>
+    <div class="breadcrumb"><a href="index.php">Beranda</a> / Kontak</div>
     <div class="section-label">Hubungi Kami</div>
     <h1>Ada Pertanyaan?</h1>
     <p>Tim kami siap membantu kamu memilih program yang tepat dan menjawab semua pertanyaanmu.</p>
   </div>
 
-  <!-- CONTACT SECTION -->
   <section class="contact-section">
     <div class="contact-wrapper">
 
-      <!-- INFO -->
       <div class="contact-info">
         <h2>Kami Senang Mendengar dari Kamu</h2>
         <p>Jangan ragu untuk menghubungi kami melalui form, WhatsApp, email, atau langsung kunjungi kantor kami di Samarinda.</p>
-
         <div class="info-item">
           <div class="info-icon">📍</div>
-          <div class="info-content">
-            <h4>Alamat Kantor</h4>
-            <p>Jl. XXXXX No. XX, Samarinda<br>Kalimantan Timur, 75117</p>
-          </div>
+          <div class="info-content"><h4>Alamat Kantor</h4><p>Jl. XXXXX No. XX, Samarinda<br>Kalimantan Timur, 75117</p></div>
         </div>
         <div class="info-item">
           <div class="info-icon">📞</div>
-          <div class="info-content">
-            <h4>Telepon / WhatsApp</h4>
-            <p>+62 xxx-xxxx-xxx<br>Senin – Jumat, 08.00 – 17.00 WITA</p>
-          </div>
+          <div class="info-content"><h4>Telepon / WhatsApp</h4><p>+62 xxx-xxxx-xxx<br>Senin – Jumat, 08.00 – 17.00 WITA</p></div>
         </div>
         <div class="info-item">
           <div class="info-icon">✉️</div>
-          <div class="info-content">
-            <h4>Email</h4>
-            <p>info@speakupenglish.id<br>support@speakupenglish.id</p>
-          </div>
+          <div class="info-content"><h4>Email</h4><p>info@speakupenglish.id<br>support@speakupenglish.id</p></div>
         </div>
-
         <div class="social-links">
           <a href="#" class="social-btn" title="Instagram">📷</a>
           <a href="#" class="social-btn" title="TikTok">🎵</a>
@@ -73,7 +62,6 @@
         </div>
       </div>
 
-      <!-- FORM -->
       <div class="contact-form">
         <h3>Kirim Pesan</h3>
         <p class="subtitle">Isi formulir di bawah dan tim kami akan segera merespons.</p>
@@ -81,20 +69,20 @@
         <div class="form-row">
           <div class="form-group">
             <label>Nama Lengkap *</label>
-            <input type="text" placeholder="Masukkan nama lengkap" required/>
+            <input type="text" id="k-nama" placeholder="Masukkan nama lengkap"/>
           </div>
           <div class="form-group">
             <label>Email *</label>
-            <input type="email" placeholder="nama@email.com" required/>
+            <input type="email" id="k-email" placeholder="nama@email.com"/>
           </div>
         </div>
         <div class="form-group">
           <label>Nomor WhatsApp</label>
-          <input type="tel" placeholder="+62 xxx-xxxx-xxxx"/>
+          <input type="tel" id="k-wa" placeholder="+62 xxx-xxxx-xxxx"/>
         </div>
         <div class="form-group">
           <label>Topik</label>
-          <select>
+          <select id="k-topik">
             <option value="">— Pilih Topik —</option>
             <option>Informasi Kursus</option>
             <option>Pendaftaran</option>
@@ -105,16 +93,15 @@
         </div>
         <div class="form-group full">
           <label>Pesan *</label>
-          <textarea placeholder="Tuliskan pertanyaan atau pesan kamu di sini..."></textarea>
+          <textarea id="k-pesan" placeholder="Tuliskan pertanyaan atau pesan kamu di sini..."></textarea>
         </div>
-        <button class="btn-submit" onclick="handleSubmit()">Kirim Pesan →</button>
-        <div class="success-msg" id="successMsg">✅ Pesan berhasil dikirim! Tim kami akan menghubungi kamu segera.</div>
+        <button class="btn-submit" id="btnKirim" onclick="handleSubmit()">Kirim Pesan →</button>
+        <div class="success-msg" id="successMsg" style="display:none">✅ Pesan berhasil dikirim! Tim kami akan menghubungi kamu segera.</div>
       </div>
 
     </div>
   </section>
 
-  <!-- MAP -->
   <div class="map-section">
     <div class="map-box">
       <div class="map-icon">🗺️</div>
@@ -123,29 +110,19 @@
     </div>
   </div>
 
-  <!-- FOOTER -->
   <footer>
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="index.html" class="logo">Speak<span>Up</span></a>
+        <a href="index.php" class="logo">Speak<span>Up</span></a>
         <p>Platform kursus bahasa Inggris online yang membantu Anda mencapai potensi terbaik dalam berkomunikasi secara global.</p>
       </div>
       <div class="footer-col">
         <h4>Navigasi</h4>
         <ul>
-          <li><a href="index.html">Beranda</a></li>
-          <li><a href="kursus.html">Kursus</a></li>
-          <li><a href="tentang.html">Tentang Kami</a></li>
-          <li><a href="kontak.html">Kontak</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Program</h4>
-        <ul>
-          <li><a href="kursus.html">English for Beginners</a></li>
-          <li><a href="kursus.html">Conversational English</a></li>
-          <li><a href="kursus.html">Business English</a></li>
-          <li><a href="kursus.html">IELTS Preparation</a></li>
+          <li><a href="index.php">Beranda</a></li>
+          <li><a href="kursus.php">Kursus</a></li>
+          <li><a href="tentang.php">Tentang Kami</a></li>
+          <li><a href="kontak.php">Kontak</a></li>
         </ul>
       </div>
     </div>
@@ -157,5 +134,6 @@
 
   <script src="js/main.js"></script>
   <script src="js/kontak.js"></script>
+  <script src="js/animations.js"></script>
 </body>
 </html>

@@ -1,0 +1,122 @@
+/* detail.css — SpeakUp English */
+
+.detail-hero {
+  display: flex;
+  gap: 48px;
+  padding: 48px 6%;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.detail-thumb {
+  flex-shrink: 0;
+  width: 220px; height: 220px;
+  border-radius: 24px;
+  display: flex; align-items: center; justify-content: center;
+}
+.detail-emoji { font-size: 5rem; }
+
+.detail-info { flex: 1; min-width: 280px; }
+.detail-info h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 900; margin: 12px 0 16px;
+}
+.detail-desc { color: #8892a4; line-height: 1.7; margin-bottom: 24px; }
+
+.detail-stats {
+  display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 28px;
+}
+.dstat { text-align: center; }
+.dstat-val   { display: block; font-size: 1.1rem; font-weight: 700; color: #00b4d8; }
+.dstat-label { font-size: 0.76rem; color: #8892a4; margin-top: 2px; }
+
+.detail-price-row {
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+.detail-price {
+  font-size: 1.6rem; font-weight: 900; color: #00b4d8;
+}
+
+.fav-btn-detail {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #fff; padding: 10px 20px; border-radius: 50px;
+  cursor: pointer; font-size: 0.9rem;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+}
+.fav-btn-detail:hover { border-color: rgba(0,180,216,0.4); }
+.fav-btn-detail.fav-active { background: rgba(255,80,80,0.1); border-color: rgba(255,80,80,0.3); }
+
+/* ---- BODY LAYOUT ---- */
+.detail-body {
+  display: flex; gap: 48px;
+  padding: 0 6% 60px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.detail-content { flex: 1; min-width: 280px; }
+.detail-content h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; margin-bottom: 20px;
+}
+
+.detail-long-desc p { color: #8892a4; line-height: 1.8; margin-bottom: 12px; }
+.desc-bullet {
+  position: relative; padding-left: 20px;
+  color: #8892a4; line-height: 1.8; margin-bottom: 8px;
+}
+.desc-bullet::before {
+  content: '→'; position: absolute; left: 0;
+  color: #00b4d8; font-weight: 700;
+}
+
+/* ---- SIDEBAR ---- */
+.detail-sidebar { width: 280px; flex-shrink: 0; }
+.sidebar-card {
+  background: #142338;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 20px; padding: 24px;
+  position: sticky; top: 80px;
+}
+.sidebar-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem; margin-bottom: 18px;
+}
+.sidebar-list { list-style: none; }
+.sidebar-list li {
+  display: flex; justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 0.86rem;
+}
+.sidebar-list li span { color: #8892a4; }
+.sidebar-list li strong { color: #fff; }
+.price-highlight { color: #00b4d8 !important; font-size: 1rem; }
+
+/* ---- RECOMMENDATION ---- */
+.rekomen-section { padding: 40px 6% 60px; }
+
+/* ---- BUTTONS ---- */
+.btn-primary {
+  display: inline-block; background: #00b4d8; color: #0a1628;
+  padding: 12px 28px; border-radius: 50px; font-weight: 700;
+  text-decoration: none; font-size: 0.95rem; transition: background 0.2s;
+}
+.btn-primary:hover { background: #90e0ef; }
+.btn-outline {
+  display: inline-block; border: 2px solid rgba(0,180,216,0.4); color: #00b4d8;
+  padding: 10px 24px; border-radius: 50px; font-weight: 600;
+  text-decoration: none; font-size: 0.9rem; transition: all 0.2s;
+}
+.btn-outline:hover { border-color: #00b4d8; background: rgba(0,180,216,0.05); }
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 768px) {
+  .detail-thumb { width: 140px; height: 140px; }
+  .detail-emoji { font-size: 3rem; }
+  .detail-sidebar { width: 100%; }
+  .sidebar-card { position: static; }
+}

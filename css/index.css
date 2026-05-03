@@ -121,6 +121,15 @@ h1 em {
 .stat-num span  { color: var(--teal); }
 .stat-label     { font-size: 0.78rem; color: var(--gray); margin-top: 2px; letter-spacing: 0.3px; }
 
+.stat-nums {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--white);
+}
+.stat-nums span  { color: var(--teal); }
+.stat-label     { font-size: 0.78rem; color: var(--gray); margin-top: 2px; letter-spacing: 0.3px; }
+
 /* ===== SECTIONS ===== */
 section { padding: 80px 6%; }
 

@@ -1,20 +1,44 @@
-// kontak.js — SpeakUp English
-// Form submission handler untuk halaman Kontak
+// js/kontak.js — SpeakUp English
+// Submit form kontak ke api/kontak.php via fetch
 
-function handleSubmit() {
-  var nama  = document.querySelector('input[type="text"]').value.trim();
-  var email = document.querySelector('input[type="email"]').value.trim();
-  var pesan = document.querySelector('textarea').value.trim();
+async function handleSubmit() {
+  const nama  = document.getElementById('k-nama')?.value.trim()  || '';
+  const email = document.getElementById('k-email')?.value.trim() || '';
+  const wa    = document.getElementById('k-wa')?.value.trim()    || '';
+  const topik = document.getElementById('k-topik')?.value        || '';
+  const pesan = document.getElementById('k-pesan')?.value.trim() || '';
 
   if (!nama || !email || !pesan) {
-    alert('Nama, email, dan pesan wajib diisi!');
+    alert('Harap isi Nama, Email, dan Pesan!');
+    return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    alert('Format email tidak valid!');
     return;
   }
 
-  var msg = document.getElementById('successMsg');
-  msg.style.display = 'block';
+  const btn = document.getElementById('btnKirim');
+  btn.disabled    = true;
+  btn.textContent = 'Mengirim...';
 
-  setTimeout(function () {
-    msg.style.display = 'none';
-  }, 4000);
+  try {
+    const res  = await fetch('api/kontak.php', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ nama, email, whatsapp: wa, topik, pesan }),
+    });
+    const data = await res.json();
+
+    if (data.status === 'ok') {
+      document.getElementById('successMsg').style.display = 'block';
+      setTimeout(() => document.getElementById('successMsg').style.display = 'none', 5000);
+    } else {
+      alert('Gagal: ' + (data.errors?.join(', ') || data.message));
+    }
+  } catch {
+    alert('Gagal menghubungi server.');
+  }
+
+  btn.disabled    = false;
+  btn.textContent = 'Kirim Pesan →';
 }

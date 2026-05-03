@@ -168,3 +168,23 @@ section { padding: 70px 6%; }
   .team-card    { flex: 1 1 calc(25% - 24px); }
   .mission-card { flex: 1 1 calc(33.333% - 20px); }
 }
+
+/* === CTA Section === */
+.cta-section {
+  background: linear-gradient(135deg, #0d2137, #1a3a5c);
+  border-top: 1px solid rgba(0, 180, 216, 0.15);
+  border-bottom: 1px solid rgba(0, 180, 216, 0.15);
+  padding: 80px 6%;
+  text-align: center;
+}
+.cta-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 900;
+  margin-bottom: 14px;
+}
+.cta-section p {
+  color: #8892a4;
+  font-size: 1rem;
+  margin-bottom: 32px;
+}

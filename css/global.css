@@ -336,3 +336,11 @@ footer {
     padding: 10px 24px;
   }
 }
+/* Checkpoint 2 additions */
+.level-cert { background: rgba(244,162,97,0.2); color: #f4a261; }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem,3.5vw,2.8rem); font-weight: 900; line-height: 1.2; margin-bottom: 16px; }
+.section-sub { color: #8892a4; max-width: 520px; line-height: 1.7; margin-bottom: 40px; }
+.btn-primary { display:inline-block; background:#00b4d8; color:#0a1628; padding:14px 32px; border-radius:50px; font-weight:700; text-decoration:none; font-size:0.95rem; transition:background 0.2s; }
+.btn-primary:hover { background:#90e0ef; }
+.btn-outline { display:inline-block; border:2px solid rgba(0,180,216,0.4); color:#00b4d8; padding:12px 28px; border-radius:50px; font-weight:600; text-decoration:none; font-size:0.9rem; transition:all 0.2s; }
+.btn-outline:hover { border-color:#00b4d8; background:rgba(0,180,216,0.05); }
