@@ -1,10 +1,8 @@
 <?php
 // ============================================================
-// kursus.php — Halaman Daftar Kursus
-// PHP: render semua kursus dari DB (server-side)
-// JS : pencarian real-time + filter level (client-side)
-//      + Simpan Favorit ke LocalStorage
+// kursus.php — Halaman Daftar Kursus (Checkpoint 3)
 // ============================================================
+session_start();
 require_once __DIR__ . '/php/config.php';
 
 $db  = getDB();
@@ -33,6 +31,14 @@ $all_courses = $stmt->fetchAll();
       <li><a href="tentang.php">Tentang Kami</a></li>
       <li><a href="kontak.php">Kontak</a></li>
       <li><a href="daftar.php" class="nav-cta">Daftar Sekarang</a></li>
+      <?php if (isAdmin()): ?>
+      <li><a href="admin/dashboard.php" class="nav-admin-pill">⚙️ Admin</a></li>
+      <?php elseif (isLoggedIn()): ?>
+      <li><a href="riwayat.php" class="nav-login-pill">📋 Riwayat</a></li>
+      <li><a href="logout.php" class="nav-logout-pill">Logout</a></li>
+      <?php else: ?>
+      <li><a href="login.php" class="nav-login-pill">Login</a></li>
+      <?php endif; ?>
     </ul>
     <div class="hamburger" id="hamburger" onclick="toggleNav()">
       <span></span><span></span><span></span>

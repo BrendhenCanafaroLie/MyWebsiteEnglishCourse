@@ -2,15 +2,16 @@
 // Shared JavaScript: navbar toggle (semua halaman)
 
 function toggleNav() {
-  document.getElementById('navLinks').classList.toggle('open');
-  document.body.classList.toggle('nav-open');
+  const nav = document.getElementById('navLinks');
+  const isOpen = nav.classList.toggle('open');
+  document.body.classList.toggle('nav-open', isOpen);
 }
 
 // Klik di luar menu = tutup
 document.addEventListener('click', function (e) {
   const nav = document.getElementById('navLinks');
   const hamburger = document.querySelector('.hamburger');
-  if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
+  if (nav.classList.contains('open') && !nav.contains(e.target) && !hamburger.contains(e.target)) {
     nav.classList.remove('open');
     document.body.classList.remove('nav-open');
   }

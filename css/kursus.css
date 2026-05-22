@@ -63,6 +63,7 @@
 .input-error { border-color:rgba(255,80,80,0.5) !important; }
 
 @media (max-width:700px) {
-  .fav-panel { width:calc(100vw - 32px); right:16px; bottom:90px; }
+  /* FIX: fav-panel bottom harus memberi jarak cukup di atas tombol (~20px + 46px tombol + 10px gap) */
+  .fav-panel     { width:calc(100vw - 32px); right:16px; bottom:86px; }
   .fav-float-btn { right:16px; bottom:20px; }
 }

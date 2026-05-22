@@ -25,11 +25,15 @@
 }
 
 /* ----- Base ----- */
+/* FIX: pakai overflow-x: clip di body saja — tidak bikin scroll container baru seperti hidden */
+html,
+body {
+  overflow-x: hidden; /* FIX: keduanya harus diset — html adalah root scroll container */
+}
 body {
   font-family: 'DM Sans', sans-serif;
   background: var(--navy);
   color: var(--white);
-  overflow-x: hidden;
 }
 
 /* ===== NAVBAR ===== */
@@ -37,6 +41,9 @@ nav {
   position: sticky;
   top: 0;
   z-index: 999;
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
   background: rgba(10, 22, 40, 0.92);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(0, 180, 216, 0.15);
@@ -295,6 +302,13 @@ footer {
     z-index: 99;
   }
 
+  /* FIX: kunci scroll saat nav terbuka — pakai position:fixed agar tidak ada horizontal scroll */
+  body.nav-open {
+    position: fixed;
+    width: 100%;
+    overflow-y: scroll; /* pertahankan lebar scrollbar agar tidak ada layout shift */
+  }
+
   .hamburger { display: flex; }
 
   /* Sembunyikan nav, slide dari kanan */
@@ -302,7 +316,8 @@ footer {
     display: flex;                      /* tetap flex, bukan display:none */
     position: fixed;
     top: 0;
-    right: -100%;                       /* tersembunyi di luar layar */
+    right: 0;                           /* FIX: tetap di right:0, disembunyikan pakai transform */
+    transform: translateX(100%);        /* FIX: geser keluar pakai transform, tidak mempengaruhi lebar dokumen */
     width: 75%;
     max-width: 300px;
     height: 100vh;
@@ -311,13 +326,14 @@ footer {
     align-items: flex-start;
     padding: 80px 30px 30px;
     gap: 0;
-    transition: right 0.3s ease;
+    transition: transform 0.3s ease;   /* FIX: transition pakai transform, bukan right */
     z-index: 150;
     border-left: 1px solid rgba(0, 180, 216, 0.15);
+    visibility: hidden;                 /* FIX: sembunyikan dari accessibility tree saat tutup */
   }
 
   /* Muncul saat .open */
-  .nav-links.open { right: 0; }
+  .nav-links.open { transform: translateX(0); visibility: visible; }
 
   .nav-links li { width: 100%; }
 
@@ -344,3 +360,51 @@ footer {
 .btn-primary:hover { background:#90e0ef; }
 .btn-outline { display:inline-block; border:2px solid rgba(0,180,216,0.4); color:#00b4d8; padding:12px 28px; border-radius:50px; font-weight:600; text-decoration:none; font-size:0.9rem; transition:all 0.2s; }
 .btn-outline:hover { border-color:#00b4d8; background:rgba(0,180,216,0.05); }
+
+/* ===== AUTH NAV PILLS (Checkpoint 3) ===== */
+.nav-admin-pill,
+.nav-login-pill,
+.nav-logout-pill {
+  padding: 7px 16px;
+  border-radius: 50px;
+  font-weight: 600 !important;
+  font-size: 0.84rem !important;
+  transition: all 0.2s !important;
+}
+.nav-admin-pill {
+  background: rgba(244,162,97,0.15);
+  color: var(--gold) !important;
+  border: 1px solid rgba(244,162,97,0.3);
+}
+.nav-admin-pill:hover { background: rgba(244,162,97,0.25) !important; }
+.nav-admin-pill::after { display: none !important; }
+
+.nav-login-pill {
+  background: rgba(0,180,216,0.12);
+  color: var(--teal) !important;
+  border: 1px solid rgba(0,180,216,0.3);
+}
+.nav-login-pill:hover { background: rgba(0,180,216,0.2) !important; }
+.nav-login-pill::after { display: none !important; }
+
+.nav-logout-pill {
+  background: rgba(255,100,100,0.1);
+  color: #ff8080 !important;
+  border: 1px solid rgba(255,100,100,0.25);
+}
+.nav-logout-pill:hover { background: rgba(255,100,100,0.18) !important; }
+.nav-logout-pill::after { display: none !important; }
+
+/* ===== AUTH PILLS — MOBILE FIX ===== */
+@media (max-width: 700px) {
+  .nav-links .nav-admin-pill,
+  .nav-links .nav-login-pill,
+  .nav-links .nav-logout-pill {
+    display: inline-block !important;
+    width: auto !important;
+    margin: 10px 0 0 0;
+    border-bottom: none !important;
+    padding: 9px 20px !important;
+    font-size: 0.88rem !important;
+  }
+}

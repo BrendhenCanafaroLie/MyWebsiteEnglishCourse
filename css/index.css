@@ -12,6 +12,8 @@
   padding: 80px 6% 60px;
   position: relative;
   overflow: hidden;
+  box-sizing: border-box;  /* FIX: padding tidak menambah lebar */
+  max-width: 100%;         /* FIX: tidak boleh lebih lebar dari parent */
 }
 .hero::before {
   content: '';
@@ -242,29 +244,14 @@ section { padding: 80px 6%; }
   line-height: 1.7;
 }
 
-/* responsive */
-@media (max-width: 1023px) {
-  .why-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 700px) {
-  .why-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .why-card {
-    padding: 26px 22px;
-  }
-}
-
 /* ===== CTA ===== */
 .cta-section {
   background: linear-gradient(135deg, #0d2137 0%, #001525 100%);
   border-radius: 24px;
   margin: 0 6% 80px;
   padding: 60px;
+  box-sizing: border-box;   /* FIX: padding tidak menambah lebar */
+  max-width: 88vw;          /* FIX: tidak boleh lebih lebar dari 88% viewport */
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -292,13 +279,33 @@ section { padding: 80px 6%; }
 }
 
 /* ===== RESPONSIVE ===== */
+@media (max-width: 1023px) {
+  .why-grid { grid-template-columns: repeat(2, 1fr); }
+}
 @media (max-width: 700px) {
   .feature-card { flex: 1 1 calc(90% - 20px); }
   .course-card  { flex: 1 1 90%; }
   .testi-card   { flex: 1 1 90%; }
-  .hero-stats   { gap: 24px; }
+  .hero-stats   { gap: 24px; flex-wrap: wrap; }
   .cta-section  { padding: 40px 24px; margin: 0 4% 60px; }
   .courses-header { flex-direction: column; align-items: flex-start; }
+
+  /* FIX: hero padding terlalu besar di mobile */
+  .hero { padding: 48px 5% 40px; min-height: unset; }
+  .hero p { font-size: 0.95rem; margin-bottom: 28px; }
+  .hero-btns { gap: 10px; }
+
+  /* FIX: pseudo-element dekoratif diperkecil agar tidak overflow horizontal */
+  .hero::before { width: 300px; height: 300px; right: -60px; }
+  .hero::after  { width: 200px; height: 200px; }
+
+  /* FIX: section padding lebih compact di mobile */
+  section { padding: 56px 5%; }
+  .why-section { padding: 56px 5%; }
+
+  /* FIX: why-grid single column */
+  .why-grid { grid-template-columns: 1fr; }
+  .why-card  { padding: 26px 22px; }
 }
 @media (min-width: 701px) {
   .course-card  { flex: 1 1 calc(50% - 24px); }

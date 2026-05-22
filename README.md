@@ -1,172 +1,213 @@
-# MyWebsiteEnglishCourse
-Projek Tugas Study Club FullStack (Sistem Informasi)
-Kelompok 9:
-- Brendhen Canafaro Lie
-- Mukhammad Ismul Azam Atmoko
+# 🎓 SpeakUp English — Final Project (Checkpoint 3)
 
-# SpeakUp English — Website Kursus Bahasa Inggris Online
-
-> Aplikasi web dinamis multi-halaman untuk platform kursus bahasa Inggris **SpeakUp English**, dibangun menggunakan **PHP, MySQL, JavaScript, HTML, dan CSS** — tanpa framework.
+Platform kursus bahasa Inggris online dengan fitur CRUD penuh, autentikasi berbasis role, dan pola arsitektur MVC.
 
 ---
 
-## 🚀 Checkpoint 2 — Dynamic Web Application
+## 📋 Deskripsi Proyek
 
-Website ini merupakan hasil upgrade dari Checkpoint 1 (statis) menjadi aplikasi web dinamis dengan integrasi **PHP & MySQL** di sisi server, serta fitur interaktif **JavaScript & LocalStorage** di sisi client.
+SpeakUp English adalah website platform kursus bahasa Inggris yang dibangun sebagai Final Project mata kuliah Pemrograman Web. Website ini mendukung fitur Create, Read, Update, dan Delete (CRUD) secara penuh dengan sistem autentikasi admin dan user.
 
-### Yang Berubah dari Checkpoint 1:
-- Semua data kursus yang sebelumnya ditulis langsung di HTML kini tersimpan di **database MySQL**
-- PHP digunakan untuk **menampilkan konten dari database** (server-side rendering)
-- Ditambahkan **halaman detail kursus** dengan routing berbasis slug (`detail.php?slug=...`)
-- Ditambahkan **REST API endpoint** (`api/courses.php`, `api/kontak.php`)
-- Fitur **pencarian real-time** dan **filter level** tanpa reload halaman
-- Fitur **Simpan Favorit** menggunakan LocalStorage
-- **Auto-save draft** form pendaftaran ke LocalStorage
-- Animasi: scroll reveal, count-up statistik, mouse glow & tilt pada kartu
+**Tema:** Platform Kursus Online  
+**Checkpoint:** 3 (Final Project)
+
 ---
 
-## 📁 Struktur Proyek
+## ✅ Fitur yang Diimplementasikan
+
+### Autentikasi & Role Management
+- **Admin Login** — akses penuh ke dashboard dan semua fitur CRUD
+- **User Register & Login** — pengguna bisa membuat akun dan login
+- **Role Management** — admin dan user memiliki hak akses berbeda
+- **CSRF Protection** — setiap form dilindungi token CSRF
+- **Password Hashing** — password di-hash menggunakan bcrypt (cost 12)
+- **Rate Limiting Login** — maksimal 5 percobaan gagal per 15 menit per IP
+
+### CRUD Kursus (Admin)
+| Operasi | Endpoint |
+|---------|----------|
+| Create  | `admin/courses.php?action=create` |
+| Read    | `admin/courses.php`, halaman publik `kursus.php` |
+| Update  | `admin/courses.php?action=edit&id=N` |
+| Delete  | POST ke `admin/courses.php` (dengan modal konfirmasi) |
+
+### Fitur Admin Panel
+- 📊 **Dashboard** dengan 5 stat card (kursus, siswa, pendaftaran, akun user, pesan kontak)
+- 📚 **Kelola Kursus** — CRUD lengkap dengan auto-generate slug
+- 👥 **Daftar User** — lihat semua akun dan hapus user
+- 📋 **Data Pendaftaran** — lihat & hapus data pendaftaran masuk
+- ✉️ **Pesan Kontak** — lihat, tandai sudah dibaca, dan hapus pesan dari pengunjung
+- 🔍 **Real-time Search** di setiap tabel admin
+- 📄 **Pagination** di semua tabel (10 item per halaman)
+
+### Fitur User
+- 📋 **Riwayat Pendaftaran** (`riwayat.php`) — user yang login bisa melihat kursus yang pernah didaftarkan
+- 🔐 Session autentikasi menyimpan `user_id` dan `user_username`
+- Pendaftaran kursus otomatis tertaut ke akun user jika sedang login
+
+### Halaman Publik (Guest & User)
+- `index.php` — beranda dengan kursus unggulan & statistik dinamis
+- `kursus.php` — daftar semua kursus dengan filter level & search real-time
+- `detail.php` — halaman detail kursus dengan rekomendasi
+- `daftar.php` — form pendaftaran kursus (validasi real-time + simpan draft)
+- `tentang.php` — halaman tentang kami
+- `kontak.php` — form kontak (pesan tersimpan ke database)
+
+---
+
+## 🏗️ Arsitektur MVC
 
 ```
 MyWebsiteEnglishCourse/
 │
-├── index.php           # Halaman utama / beranda (data dari DB)
-├── kursus.php          # Daftar semua program kursus (dari DB)
-├── detail.php          # Detail kursus by slug (?slug=nama-kursus)
-├── tentang.php         # Tentang SpeakUp English (statistik dari DB)
-├── kontak.php          # Halaman kontak
-├── daftar.php          # Form pendaftaran (dropdown kursus dari DB)
-├── database.sql        # Schema + seed data MySQL
+├── admin/                    ← Router (entry point) tiap halaman admin
+│   ├── dashboard.php
+│   ├── courses.php
+│   ├── users.php
+│   ├── registrations.php
+│   └── kontak.php            ← (baru) Pesan kontak
+│
+├── app/
+│   ├── controllers/
+│   │   ├── AdminController.php   ← Logika CRUD semua fitur admin
+│   │   └── AuthController.php    ← Login, register, logout, rate limiting
+│   │
+│   ├── models/
+│   │   ├── CourseModel.php       ← Query tabel courses
+│   │   ├── UserModel.php         ← Query tabel users
+│   │   ├── RegistrationModel.php ← Query tabel pendaftaran
+│   │   └── KontakModel.php       ← (baru) Query tabel pesan_kontak
+│   │
+│   └── views/
+│       ├── admin/
+│       │   ├── dashboard.php
+│       │   ├── courses/          ← index, create, edit, _form
+│       │   ├── users/            ← index
+│       │   ├── registrations/    ← index
+│       │   └── kontak/           ← (baru) index
+│       │
+│       ├── auth/
+│       │   ├── login.php
+│       │   └── register.php
+│       │
+│       └── layouts/
+│           ├── admin_nav.php
+│           └── flash.php
+│
+├── api/                      ← REST API endpoints
+│   ├── courses.php           ← GET kursus, POST pendaftaran
+│   └── kontak.php            ← POST pesan kontak
 │
 ├── php/
-│   └── config.php      # Koneksi PDO, helper functions
+│   └── config.php            ← Database, helper, rate limiting
 │
-├── api/
-│   ├── courses.php     # REST API: GET kursus, POST pendaftaran
-│   └── kontak.php      # REST API: POST pesan kontak
-│
-├── css/
-│   ├── global.css      # Variabel, reset, navbar, footer, aurora effect
-│   ├── index.css       # Style khusus halaman beranda
-│   ├── kursus.css      # Style khusus halaman kursus + search + favorit
-│   ├── tentang.css     # Style khusus halaman tentang
-│   ├── kontak.css      # Style khusus halaman kontak
-│   ├── daftar.css      # Style khusus halaman pendaftaran
-│   └── detail.css      # Style khusus halaman detail kursus
-│
-└── js/
-    ├── main.js         # Navbar toggle & animasi scroll (shared)
-    ├── kursus.js       # Pencarian real-time + filter + LocalStorage favorit
-    ├── detail.js       # Favorit toggle di halaman detail
-    ├── daftar.js       # Validasi real-time + auto-save draft
-    ├── kontak.js       # Submit form kontak via fetch API
-    └── animations.js   # Scroll reveal, count-up, mouse glow, aurora
+├── css/                      ← Stylesheet per halaman
+├── js/                       ← JavaScript per halaman
+├── database.sql              ← Schema + seed data
+└── README.md
 ```
 
 ---
 
-## ✨ Fitur Website
+## 🗄️ Struktur Database
 
-### 🗄️ Integrasi PHP & Database (Bobot 70%)
-- Seluruh data kursus (nama, level, harga, deskripsi, rating, siswa) diambil dari MySQL
-- Statistik beranda (total siswa, jumlah kursus, rata-rata rating) dihitung langsung dari DB
-- Halaman detail kursus: `detail.php?slug=english-for-beginners`
-- Form pendaftaran: data tersimpan ke tabel `pendaftaran` via REST API
-- Form kontak: pesan tersimpan ke tabel `pesan_kontak` via REST API
-- Dropdown kursus di halaman daftar diambil dinamis dari DB
-
-### ⚡ DOM & Events JavaScript (Bobot 20%)
-- **Pencarian real-time** — `input` event, filter kartu tanpa reload halaman
-- **Filter level** — `click` event pada tombol filter (Semua / Pemula / Menengah / Lanjutan / Sertifikasi)
-- **Validasi real-time** — `blur` & `input` event pada form pendaftaran
-- **Tombol favorit** — `click` event, toggle simpan/hapus favorit
-
-### 💾 LocalStorage (Bobot 10%)
-- **Favorit kursus** — disimpan dengan key `speakup_favorites`, tampil di panel floating
-- **Draft form daftar** — auto-save saat mengetik, key `speakup_daftar_draft`, terhapus otomatis setelah submit berhasil
+| Tabel | Keterangan |
+|-------|------------|
+| `users` | Akun admin dan user (password bcrypt) |
+| `courses` | Data kursus dengan slug, level, harga, dsb |
+| `pendaftaran` | Data pendaftaran kursus (FK ke courses & users) |
+| `pesan_kontak` | Pesan dari form kontak (is_read flag) |
+| `login_attempts` | Catatan percobaan login untuk rate limiting |
 
 ---
 
-## 🗃️ Database
-
-### Tabel `courses`
-| Kolom | Tipe | Keterangan |
-|-------|------|-----------|
-| id | INT | Primary key |
-| slug | VARCHAR | URL identifier unik (contoh: `english-for-beginners`) |
-| nama | VARCHAR | Nama program kursus |
-| level | ENUM | Pemula / Menengah / Lanjutan / Sertifikasi |
-| durasi | VARCHAR | Durasi kursus (contoh: 8 Minggu) |
-| materi | INT | Jumlah sesi materi |
-| rating | DECIMAL | Rating kursus (1–5) |
-| siswa | INT | Jumlah siswa terdaftar |
-| harga | INT | Harga dalam Rupiah |
-| deskripsi | TEXT | Deskripsi singkat |
-| deskripsi_panjang | TEXT | Deskripsi lengkap untuk halaman detail |
-
-### Tabel `pendaftaran`
-Menyimpan data dari form pendaftaran: nama, email, whatsapp, kursus_id, tujuan.
-
-### Tabel `pesan_kontak`
-Menyimpan pesan dari form kontak: nama, email, whatsapp, topik, pesan.
-
-### Data Seed (6 Kursus)
-| Program | Level | Durasi | Harga |
-|---------|-------|--------|-------|
-| English for Beginners | Pemula | 8 Minggu | Rp 299.000 |
-| Conversational English | Menengah | 10 Minggu | Rp 399.000 |
-| Business English | Lanjutan | 12 Minggu | Rp 499.000 |
-| IELTS Preparation | Sertifikasi | 16 Minggu | Rp 699.000 |
-| English Writing Skills | Menengah | 10 Minggu | Rp 349.000 |
-| Public Speaking in English | Lanjutan | 8 Minggu | Rp 449.000 |
-
----
-
-## ⚙️ Cara Setup & Menjalankan
+## 🚀 Cara Menjalankan
 
 ### Persyaratan
 - PHP 8.0+
-- MySQL 5.7+ / MariaDB
-- Web server lokal: **XAMPP** atau **Laragon** (direkomendasikan)
+- MySQL / MariaDB
+- Web server (Apache / XAMPP / Laragon)
 
-### Langkah Instalasi
+### Langkah Setup
 
-1. **Clone atau ekstrak** folder project ke:
-   - XAMPP: `C:\xampp\htdocs\MyWebsiteEnglishCourse\`
-   - Laragon: `C:\laragon\www\MyWebsiteEnglishCourse\`
+1. **Clone / ekstrak** project ke folder web server (misal: `htdocs/`)
 
-2. **Import database** — buka phpMyAdmin (`http://localhost/phpmyadmin`):
-   - Buat database baru bernama `speakup_english`
-   - Import file `database.sql`
-
-3. **Konfigurasi koneksi** — buka `php/config.php`:
-   ```php
-   define('DB_USER', 'root');   // sesuaikan
-   define('DB_PASS', '');       // sesuaikan
+2. **Import database**
+   ```sql
+   -- Di phpMyAdmin atau MySQL CLI:
+   SOURCE /path/to/database.sql;
    ```
 
-4. **Jalankan** — buka browser:
+3. **Konfigurasi database** di `php/config.php`
+   ```php
+   define('DB_HOST', 'localhost');
+   define('DB_USER', 'root');      // sesuaikan
+   define('DB_PASS', '');          // sesuaikan
+   define('DB_NAME', 'speakup_english');
+   ```
+
+4. **Akses website** di browser:
    ```
    http://localhost/MyWebsiteEnglishCourse/
    ```
 
 ---
 
-## 📄 Navigasi Halaman
+## 🔐 Akun Default
 
-| Halaman | File | Keterangan |
-|---------|------|-----------|
-| Beranda | `index.php` | Landing page, statistik & preview kursus dari DB |
-| Kursus | `kursus.php` | Daftar & filter semua kursus dari DB |
-| Detail Kursus | `detail.php?slug=...` | Detail lengkap per kursus berdasarkan slug |
-| Tentang Kami | `tentang.php` | Profil, tim, misi — statistik dari DB |
-| Kontak | `kontak.php` | Form kontak, pesan tersimpan ke DB |
-| Daftar | `daftar.php` | Form pendaftaran, data tersimpan ke DB |
+| Role | Username | Password |
+|------|----------|----------|
+| Admin | `admin` | `admin123` |
+
+> ⚠️ Ganti password admin setelah deploy ke production.
 
 ---
 
-## 👤 Tentang Proyek
+## 💡 Eksplorasi Nilai Tambah
 
-**SpeakUp English** adalah platform kursus bahasa Inggris online yang berlokasi di **Samarinda, Kalimantan Timur**.
+### ✅ MVC (Model-View-Controller)
+Arsitektur MVC diterapkan secara penuh:
+- **Model** — class PHP di `app/models/` yang menangani query database
+- **View** — template HTML di `app/views/` yang hanya menampilkan data
+- **Controller** — class di `app/controllers/` yang menjadi jembatan
+- Router tipis di `admin/*.php` meneruskan request ke controller yang sesuai
 
-Website ini dibuat sebagai proyek **Checkpoint 2** Study Club FullStack — mengupgrade website statis menjadi aplikasi web dinamis dengan PHP & MySQL, memenuhi kriteria penilaian: DOM & Events (20%), LocalStorage (10%), dan Integrasi PHP & Database (70%).
+### ✅ Clean Code
+- Nama variabel dan fungsi deskriptif (`getByUserId`, `countUnread`, `formatRupiah`)
+- Setiap fungsi fokus pada satu tugas (Single Responsibility)
+- Struktur folder rapi, dipisah antara admin, public, API, dan aset
+- Konsistensi gaya penulisan di seluruh file
+
+### 🌐 Hosting 
+Project siap di-deploy ke:
+InfinityFree** (PHP + MySQL gratis)
+
+
+---
+
+## 🔒 Keamanan yang Diterapkan
+
+| Fitur | Implementasi |
+|-------|-------------|
+| SQL Injection | PDO Prepared Statements |
+| XSS | `htmlspecialchars()` via fungsi `e()` |
+| CSRF | Token per-session di setiap form POST |
+| Brute Force | Rate limiting: maks 5 percobaan/15 menit/IP |
+| Password | bcrypt hash dengan cost 12 |
+| Session | `session_regenerate_id(true)` setelah login |
+
+---
+
+## 📊 Kriteria Penilaian (Final Project)
+
+| Kriteria | Bobot | Status |
+|----------|-------|--------|
+| Autentikasi (Login Admin + Session) | 30% | ✅ |
+| CRUD Penuh (Create, Read, Update, Delete) | 30% | ✅ |
+| UX & Responsivitas | 30% | ✅ |
+| Interaktivitas JS (search, modal, validasi) | 10% | ✅ |
+| **Nilai Tambah MVC** | +5 poin | ✅ |
+| **Nilai Tambah Clean Code** | +5 poin | ✅ |
+
+---
+

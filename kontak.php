@@ -1,5 +1,6 @@
 <?php
-// kontak.php — Halaman Kontak
+// kontak.php — Halaman Kontak (Checkpoint 3)
+session_start();
 require_once __DIR__ . '/php/config.php';
 ?>
 <!DOCTYPE html>
@@ -23,6 +24,14 @@ require_once __DIR__ . '/php/config.php';
       <li><a href="tentang.php">Tentang Kami</a></li>
       <li><a href="kontak.php" class="active">Kontak</a></li>
       <li><a href="daftar.php" class="nav-cta">Daftar Sekarang</a></li>
+      <?php if (isAdmin()): ?>
+      <li><a href="admin/dashboard.php" class="nav-admin-pill">⚙️ Admin</a></li>
+      <?php elseif (isLoggedIn()): ?>
+      <li><a href="riwayat.php" class="nav-login-pill">📋 Riwayat</a></li>
+      <li><a href="logout.php" class="nav-logout-pill">Logout</a></li>
+      <?php else: ?>
+      <li><a href="login.php" class="nav-login-pill">Login</a></li>
+      <?php endif; ?>
     </ul>
     <div class="hamburger" id="hamburger" onclick="toggleNav()">
       <span></span><span></span><span></span>

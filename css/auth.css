@@ -1,0 +1,185 @@
+/* ============================================================
+   css/auth.css — Login & Register pages
+   ============================================================ */
+
+.auth-body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--navy);
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(0,180,216,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(0,180,216,0.04) 0%, transparent 50%);
+  padding: 40px 20px;
+}
+
+.auth-wrapper {
+  width: 100%;
+  max-width: 480px;
+}
+
+.auth-card {
+  background: var(--navy2);
+  border: 1px solid rgba(0,180,216,0.15);
+  border-radius: 24px;
+  padding: 44px 40px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+}
+.auth-card--wide { max-width: 520px; }
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+.auth-header .logo {
+  display: inline-block;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+.auth-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+.auth-header p {
+  color: var(--gray);
+  font-size: 0.9rem;
+}
+
+/* Form elements */
+.form-group {
+  margin-bottom: 20px;
+}
+.form-group label {
+  display: block;
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: #cdd5e0;
+  margin-bottom: 8px;
+  letter-spacing: 0.3px;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 13px 16px;
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.92rem;
+  transition: border-color 0.2s, background 0.2s;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--teal);
+  background: rgba(0,180,216,0.06);
+}
+.form-group input::placeholder { color: rgba(255,255,255,0.25); }
+
+.input-password-wrap {
+  position: relative;
+}
+.input-password-wrap input {
+  padding-right: 48px;
+}
+.toggle-pw {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+  padding: 4px;
+}
+.toggle-pw:hover { opacity: 1; }
+
+.field-hint {
+  font-size: 0.76rem;
+  color: var(--gray);
+  margin-top: 6px;
+}
+.field-error {
+  font-size: 0.78rem;
+  color: #ff6b6b;
+  margin-top: 5px;
+  display: none;
+}
+
+.btn-auth {
+  width: 100%;
+  background: var(--teal);
+  color: var(--navy);
+  border: none;
+  border-radius: 50px;
+  padding: 15px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.2s, transform 0.1s;
+}
+.btn-auth:hover  { background: var(--teal-light); transform: translateY(-1px); }
+.btn-auth:active { transform: translateY(0); }
+
+.auth-footer {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 0.86rem;
+  color: var(--gray);
+}
+.auth-footer a { color: var(--teal); text-decoration: none; }
+.auth-footer a:hover { text-decoration: underline; }
+
+.auth-back {
+  text-align: center;
+  margin-top: 12px;
+}
+.auth-back a {
+  font-size: 0.82rem;
+  color: var(--gray);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.auth-back a:hover { color: var(--teal); }
+
+/* Flash messages */
+.flash {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  font-size: 0.87rem;
+  line-height: 1.5;
+}
+.flash-success { background: rgba(0,200,130,0.12); border: 1px solid rgba(0,200,130,0.3); color: #00c882; }
+.flash-error   { background: rgba(255,100,100,0.12); border: 1px solid rgba(255,100,100,0.3); color: #ff8080; }
+.flash-icon    { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+.flash > span:nth-child(2) { flex: 1; }
+.flash-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  opacity: 0.6;
+  font-size: 0.9rem;
+  padding: 0;
+  transition: opacity 0.2s;
+  flex-shrink: 0;
+}
+.flash-close:hover { opacity: 1; }
+
+@media (max-width: 500px) {
+  .auth-card { padding: 32px 24px; border-radius: 20px; }
+}

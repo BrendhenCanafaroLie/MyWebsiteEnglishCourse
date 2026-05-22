@@ -128,3 +128,9 @@
 /* === Checkpoint 2 additions === */
 .field-error { color: #ff8080; font-size: 0.78rem; margin-top: 5px; display: none; }
 .input-error { border-color: rgba(255,80,80,0.5) !important; }
+
+/* === FIX: mobile responsive === */
+@media (max-width: 500px) {
+  .daftar-section { padding: 40px 4%; }
+  .daftar-box     { padding: 24px 18px; border-radius: 16px; }
+}

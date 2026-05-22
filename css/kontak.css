@@ -173,3 +173,8 @@
 @media (max-width: 700px) {
   .contact-form { padding: 28px 20px; }
 }
+@media (max-width: 400px) {
+  /* FIX: layar sangat sempit */
+  .contact-form  { padding: 20px 14px; }
+  .kontak-section { padding: 40px 4%; }
+}

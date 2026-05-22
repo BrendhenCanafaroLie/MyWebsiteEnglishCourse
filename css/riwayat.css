@@ -1,0 +1,252 @@
+/* ============================================================
+   css/riwayat.css — Halaman Riwayat Pendaftaran User
+   ============================================================ */
+
+/* ---- Page Header ---- */
+.page-header {
+  padding: 80px 24px 40px;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(0,180,216,0.05) 0%, transparent 100%);
+}
+.page-header .breadcrumb { font-size: 0.82rem; color: var(--gray); margin-bottom: 12px; }
+.page-header .breadcrumb a { color: var(--teal); text-decoration: none; }
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 12px;
+}
+.page-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 900;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+.page-header p { color: var(--gray); font-size: 0.95rem; }
+.page-header strong { color: var(--teal); }
+
+/* ---- Section ---- */
+.riwayat-section {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+/* ---- Empty State ---- */
+.riwayat-empty {
+  text-align: center;
+  padding: 80px 24px;
+}
+.riwayat-empty .empty-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  display: block;
+}
+.riwayat-empty h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--white);
+  margin-bottom: 10px;
+}
+.riwayat-empty p { color: var(--gray); margin-bottom: 24px; }
+.btn-cta {
+  display: inline-block;
+  background: var(--teal);
+  color: var(--navy);
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-cta:hover { background: var(--teal-light); transform: translateY(-2px); }
+
+/* ---- Summary ---- */
+.riwayat-summary {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 32px;
+  flex-wrap: wrap; /* FIX: supaya card tidak overflow di mobile */
+}
+.summary-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(0,180,216,0.08);
+  border: 1px solid rgba(0,180,216,0.2);
+  border-radius: 14px;
+  padding: 20px 32px;
+}
+.summary-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--teal);
+}
+.summary-label { font-size: 0.8rem; color: var(--gray); margin-top: 4px; }
+
+/* ---- Grid ---- */
+.riwayat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+/* ---- Card ---- */
+.riwayat-card {
+  background: var(--card-bg);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 18px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.riwayat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+}
+
+.riwayat-card-thumb {
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.riwayat-emoji { font-size: 3rem; }
+
+/* Thumbnail classes dari global (c1–c6) */
+.course-thumb.c1 { background: linear-gradient(135deg, #0077b6, #023e8a); }
+.course-thumb.c2 { background: linear-gradient(135deg, #2d6a4f, #1b4332); }
+.course-thumb.c3 { background: linear-gradient(135deg, #6d28d9, #4c1d95); }
+.course-thumb.c4 { background: linear-gradient(135deg, #c2410c, #7c2d12); }
+.course-thumb.c5 { background: linear-gradient(135deg, #0e7490, #155e75); }
+.course-thumb.c6 { background: linear-gradient(135deg, #065f46, #064e3b); }
+
+.riwayat-card-body { padding: 20px; }
+
+.riwayat-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.riwayat-date { font-size: 0.75rem; color: var(--gray); }
+
+.badge-level {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 50px;
+}
+.badge-level--pemula      { background: rgba(0,200,130,0.12); color: #00c882; }
+.badge-level--menengah    { background: rgba(0,180,216,0.12); color: var(--teal); }
+.badge-level--lanjutan    { background: rgba(244,162,97,0.15); color: #f4a261; }
+.badge-level--sertifikasi { background: rgba(168,85,247,0.15); color: #c084fc; }
+
+.riwayat-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+.riwayat-card-price {
+  color: var(--teal);
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+.riwayat-card-tujuan {
+  font-size: 0.8rem;
+  color: var(--gray);
+  margin-bottom: 14px;
+  line-height: 1.5;
+  border-left: 2px solid rgba(0,180,216,0.3);
+  padding-left: 10px;
+}
+.label-tujuan { color: var(--teal); font-weight: 600; }
+
+.btn-riwayat-detail {
+  display: inline-block;
+  color: var(--teal);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.btn-riwayat-detail:hover { color: var(--teal-light); }
+
+/* ---- Pagination ---- */
+.riwayat-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 40px;
+}
+.page-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  color: var(--gray);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: all 0.15s;
+}
+.page-dot:hover { background: rgba(255,255,255,0.1); color: var(--white); }
+.page-dot--active { background: var(--teal); color: var(--navy); border-color: var(--teal); }
+
+/* ---- Footer CTA ---- */
+.riwayat-footer-cta {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding: 0 24px 60px;
+  flex-wrap: wrap;
+}
+.btn-outline {
+  display: inline-block;
+  padding: 11px 24px;
+  border: 1px solid rgba(0,180,216,0.4);
+  color: var(--teal);
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-outline:hover { background: rgba(0,180,216,0.08); }
+.btn-logout {
+  display: inline-block;
+  padding: 11px 24px;
+  background: rgba(255,100,100,0.1);
+  color: #ff8080;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  text-decoration: none;
+  border: 1px solid rgba(255,100,100,0.2);
+  transition: all 0.2s;
+}
+.btn-logout:hover { background: rgba(255,100,100,0.18); }
+
+/* ---- Responsive ---- */
+@media (max-width: 600px) {
+  .riwayat-grid { grid-template-columns: 1fr; }
+  .riwayat-section { padding: 0 16px 60px; }
+  .page-header { padding: 70px 16px 32px; }
+
+  /* FIX: summary card melebar merata di mobile */
+  .summary-card { flex: 1 1 calc(50% - 8px); padding: 16px 12px; }
+}

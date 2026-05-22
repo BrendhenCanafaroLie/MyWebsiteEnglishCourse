@@ -115,8 +115,12 @@
 
 /* ---- RESPONSIVE ---- */
 @media (max-width: 768px) {
-  .detail-thumb { width: 140px; height: 140px; }
-  .detail-emoji { font-size: 3rem; }
+  .detail-thumb   { width: 140px; height: 140px; }
+  .detail-emoji   { font-size: 3rem; }
   .detail-sidebar { width: 100%; }
-  .sidebar-card { position: static; }
+  .sidebar-card   { position: static; }
+
+  /* FIX: detail-hero gap terlalu besar di mobile */
+  .detail-hero { gap: 24px; }
+  .detail-main { flex-direction: column; gap: 24px; }
 }
