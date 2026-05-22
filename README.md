@@ -1,7 +1,7 @@
 # 🎓 SpeakUp English — Final Project (Checkpoint 3)
 
 Platform kursus bahasa Inggris online dengan fitur CRUD penuh, autentikasi berbasis role, dan pola arsitektur MVC.
-
+- Brendhen Canafaro Lie (2509116033)
 ---
 
 ## 📋 Deskripsi Proyek
@@ -106,6 +106,7 @@ MyWebsiteEnglishCourse/
 ├── database.sql              ← Schema + seed data
 └── README.md
 ```
+---
 
 ---
 
@@ -120,36 +121,6 @@ MyWebsiteEnglishCourse/
 | `login_attempts` | Catatan percobaan login untuk rate limiting |
 
 ---
-
-## 🚀 Cara Menjalankan
-
-### Persyaratan
-- PHP 8.0+
-- MySQL / MariaDB
-- Web server (Apache / XAMPP / Laragon)
-
-### Langkah Setup
-
-1. **Clone / ekstrak** project ke folder web server (misal: `htdocs/`)
-
-2. **Import database**
-   ```sql
-   -- Di phpMyAdmin atau MySQL CLI:
-   SOURCE /path/to/database.sql;
-   ```
-
-3. **Konfigurasi database** di `php/config.php`
-   ```php
-   define('DB_HOST', 'localhost');
-   define('DB_USER', 'root');      // sesuaikan
-   define('DB_PASS', '');          // sesuaikan
-   define('DB_NAME', 'speakup_english');
-   ```
-
-4. **Akses website** di browser:
-   ```
-   http://localhost/MyWebsiteEnglishCourse/
-   ```
 
 ---
 
